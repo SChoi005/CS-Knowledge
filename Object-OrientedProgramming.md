@@ -105,4 +105,49 @@
 ### What Class is Immutable?
 * For a class to be immutable, it must mark all data fields private and provide no mutator methods and no accessor methods that would return a reference to a mutable data field object.
 
-Chapter 10
+## Class Abstraction and Encapsulation
+* Class abstarction means to separate class implementation from the use of the class.
+* The creator of the class provides a description of the class and let the user know how the class can be used.
+* The user of the class does not need to know how the class is implemented. The detail of implementaion is encapsulated and hidden from the user.
+
+## Designing a Class
+* A class should describe a single entity, and all the class operations should logically fit together to support a coherent purpose. For example, you should not combine students and staff in the same class, because students and staff have different entities. 
+* A single entity with too many responsibilities can be broken into several classes to separate responsibilities.
+* For example, the classes <strong>String</strong>, <strong>StringBuilder</strong>, and <strong>StringBuffer</strong> all deal with strings, but have different responsibilities.
+* Classes are designed for reuse.
+* Follow standard Java programming style and naming conventions.
+* Choose informative names for classes, data fields, and methods.
+* Always place the data declaration before the constructor, and place constructors before methods.
+* Always provide a constructor and initialize variables to avoid programming errors.
+
+## Using Visibility Modifiers
+* A class should use the private modifier to hide its data from direct access by clients.
+* You can use get methods and set methods to provide users with access to the private data, but only to private data you want the user to see or to modify.
+* A class should also hide methods not intended for client use.
+* Make the fields or method protected if they are intended for extenders of the class.
+
+### Using the static Modifier
+* A property that is shared by all the instances of the class should be declared as a static property.
+
+## Object Composition
+* Composition is actually a special case of the aggregation relationship.
+* Aggregation models has-a relationships and represents an ownership relationship between two objects.
+* The owner object is called an aggregating object and its class an aggregating class. 
+* The subject object is called an aggregated object and its class an aggregated class.
+![image](https://user-images.githubusercontent.com/64727012/168294169-5a0ae1be-f0bf-4f0e-bb11-459759d411d0.png)
+
+## Userful Java Class Utils
+### Wrapper Classes
+> Boolean, Character, Short, Byte, Integer, Long, Float, Double
+* The wrapper classes do not have no-arg constructors
+* The instances of all wrapper classes are immutable. i.e., their internal values cannot be changed once the objects are created.
+### String class
+* A String object is immutable. i.e., its contents cannot be changed. 
+#### Interned Strings
+> Since strings are immutable and are frequently used, to improve efficiency and save memory, the JVM uses a unique instance for string literals with the same character sequence. Such an instance is called interned. For example, the following statements:
+![image](https://user-images.githubusercontent.com/64727012/168296256-ff20c225-eeac-426b-af10-d0498309f032.png)
+
+## String Builder and StringBuffer
+> The calsses is an alternative to the String class. In general, a StirngBulder/StringBuffer can be used wherever a string is used.StringBuilder/StringBuffer is more flexible than String. You can add, insert, or append new contents into a string buffer, whereas the value of a String object is fixed once the string is created.
+
+Chapter 11
