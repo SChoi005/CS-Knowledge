@@ -150,4 +150,48 @@
 ## String Builder and StringBuffer
 > The calsses is an alternative to the String class. In general, a StirngBulder/StringBuffer can be used wherever a string is used.StringBuilder/StringBuffer is more flexible than String. You can add, insert, or append new contents into a string buffer, whereas the value of a String object is fixed once the string is created.
 
-Chapter 11
+## Are superclass's Constructor Inherited?
+> They are not inherited. They are invoked explicitly or implicitly. <br/>
+> Explicitly using the <strong>super</strong> keyword.<br/>
+> If the keyword <strong>super</strong> is not explicitly used, the  superclass's no-arg constructor is automatically invoked. the compiler puts <strong>super()</strong> as the first statement in the constructor.
+
+### Using the Keyword super
+* To call a superclass constructor
+* To call a superclass method
+
+## Defining a Subclass
+### You can also :
+* Add new properties
+* Add new methods
+* Override the methods of the superclass
+### NOTE
+* An instance method can be overridden only if it is accessible
+* Thus a private method cannot be overridden, because it is not accessible outside its own class.
+* If a method defined in a subclass is private in its superclass, the two methods are completely unrelated.
+* Like an instance method, a static method can be inherited.
+* However, a static method cannot be overridden.
+* If a static method defined in the superclass is redefined in subclass, the method defined in the superclass is hidden.
+
+## The Object class and Its Methods
+> Every class in Java is descended from the java.lang.Object class. If no inheritance is specified when a class is defined, the superclass of the class is Object.
+* toString() method
+
+## Polymorphism
+> Polymorphism means that a variable of a supertype can refer to a subtype object.<br/>
+> An object of a subtype can be used wherever its supertpe value is required.
+![image](https://user-images.githubusercontent.com/64727012/168409589-a7f0b1da-2bce-42ad-bd86-8b1b02cabe79.png)
+
+## Dynamic Binding
+> Suppose an object o is an instance of classes : C1,C2,...,Cn-1 and Cn.<br/>
+> C1 is most specific class, Cn is most general class. In java, Cn is the Object class. <br/>
+> If o invokeds a method p, the JVM in turn searches the implementation for the method p in C1,C2,...,Cn-1, and Cn, until it is found.<br/>
+> Once an implementation is found, the search stops and the first-found implementation is invoked.
+
+
+
+
+
+
+
+
+
