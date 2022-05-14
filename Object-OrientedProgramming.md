@@ -311,6 +311,58 @@ Scanner input = new Scanner(url.openStream());
 
 ```
 
+## Text File vs Binary File
+> Data stored in a text file are represented in human-readable form. 
+> Data stored in a binary file are represented in binary form. 
+> You cannot read binary files. Binary files are designed to be read by programs.
+> The advantage of binary files is that they are more efficient to process than text files.
+
+## Binary I/O
+> Text I/O requires encoding and decoding. 
+> The JVM converts a Unicode to a file specific encoding when writing a character and coverts a file specific encoding to a Unicode when reading a character. 
+> Binary I/O does not require conversions.
+
+### Binary I/O Classes
+![image](https://user-images.githubusercontent.com/64727012/168426967-ac3fc5e8-0e97-4208-9478-700828727b51.png)
+* <strong>InputStream</strong> <br/>
+![image](https://user-images.githubusercontent.com/64727012/168427061-530df95b-dea5-4be4-a4fb-de20d1da9443.png)
+* <strong>OutputStream</strong> <br/>
+![image](https://user-images.githubusercontent.com/64727012/168427130-b4160c92-77dc-4c8d-98f4-683be0039dc8.png)
+* <strong>FileInputStream</strong>
+  * To construct a FileInputStream, use the following constructors :
+    * public FileInputStream(String filename)
+    * public FileInputStream(File file)
+* <strong>FileOutputStream</strong>
+  * To construct a FileOutputStream, use the following constructors :
+    * public FileOutputStream(String filename)
+    * public FileOutputStream(File file)
+    * public FileOutputStream(String filename, boolean append)
+    * public FileOutputStream(File file, boolean append)
+  * If the file does not exist, a new file would be created. If the file already exists, the first two constructors would delete the current contents in the file. To retain the current content and append new data into the file, use the last two constructors by passing true to the append parameter.
+* <strong>FilterInputStream/FilterOutputStream</strong>
+  * Filter streams are streams that filter bytes for some purpose. The basic byte input stream provides a read method that can only be used for reading bytes. If you want to read integers, doubles, or strings, you need a filter class to wrap the byte input stream. Using a filter class enables you to read integers, doubles, and strings instead of bytes and characters. <strong>FilterInputStream</strong> and <strong>FilterOutputStream</strong> are the base classes for filtering data. When you need to process primitive numeric types, use <strong>DataInputStream</strong> and <strong>DataOutputStream</strong> to filter bytes.
+* <strong>DataInputStream</strong>
+  * <strong>DataInputStream</strong> reads bytes from the stream and converts them into appropriate primitive type values or strings.
+  * public DataInputStream(InputStream instream)<br/>
+![image](https://user-images.githubusercontent.com/64727012/168427844-a49b1302-f291-485b-a589-5363fe4222b6.png)
+* <strong>DataOutputStream</strong>
+  * <strong>DataOutputStream</strong> converts primitive type values or strings into bytes and output the bytes to the stream.
+  * public DataOutputStream(OutputStream outstream)<br/>
+![image](https://user-images.githubusercontent.com/64727012/168427863-262fe07c-5eba-4e36-8272-2ed9d17f95de.png)
+* <strong>BufferedInputStream/BufferedOutputStream</strong>
+  * <strong>BufferedInputStream/BufferedOutputStream</strong> does not contain new methods. All the methods <strong>BufferedInputStream/BufferedOutputStream</strong> are inherited from the <strong>InputStream/OutputStream</strong> classes.
+  * public BufferedInputStream(InputStream in)
+  * public BufferedInputStream(InputStream in, int bufferSize)
+  * public BufferedOutputStream(OutputStream out)
+  * public BufferedOutputStream(OutputStream out, int bufferSize)
+
+#### Checking End of File
+> You can use <strong>input.available()</strong> to check it. <strong>input.available() == 0</strong> indicates that it is the end of a file.
+
+
+
+
+
 
 <strong>Reference</strong>
 * Y. Daniel Liang, "Introduction to Java Programming, 10th Edition"
