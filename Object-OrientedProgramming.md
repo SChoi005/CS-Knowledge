@@ -295,10 +295,10 @@ ArrayList<String> cities = new ArrayList<>();
 
 ## Text I/O
 > In order to perform I/O, you need to create objects using appropriate Java I/O classes.
-* Scanner class for writing data
+* Scanner class for writing data <br/>
 ![image](https://user-images.githubusercontent.com/64727012/168412446-563511f2-37bf-4ff3-8ab3-41807347c4b2.png)
 
-* PrintWriter class for reading data
+* PrintWriter class for reading data <br/>
 ![image](https://user-images.githubusercontent.com/64727012/168412434-39a221b9-9410-4704-9a5f-53c040dd627a.png)
 
 ### Reading Data from the Web
