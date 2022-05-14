@@ -145,6 +145,7 @@
 * A String object is immutable. i.e., its contents cannot be changed. 
 #### Interned Strings
 > Since strings are immutable and are frequently used, to improve efficiency and save memory, the JVM uses a unique instance for string literals with the same character sequence. Such an instance is called interned. For example, the following statements:
+
 ![image](https://user-images.githubusercontent.com/64727012/168296256-ff20c225-eeac-426b-af10-d0498309f032.png)
 
 ## String Builder and StringBuffer
@@ -178,7 +179,8 @@
 
 ## Polymorphism
 > Polymorphism means that a variable of a supertype can refer to a subtype object.<br/>
-> An object of a subtype can be used wherever its supertpe value is required.
+> An object of a subtype can be used wherever its supertype value is required.
+
 ![image](https://user-images.githubusercontent.com/64727012/168409589-a7f0b1da-2bce-42ad-bd86-8b1b02cabe79.png)
 
 ## Dynamic Binding
@@ -291,14 +293,15 @@ ArrayList<String> cities = new ArrayList<>();
 
 ## The File Class
 > The File class is a wrapper class for the file name and its directory path.
+> 
 ![image](https://user-images.githubusercontent.com/64727012/168412343-60f4029c-0df1-4c39-ab25-4b5864bd5345.png)
 
 ## Text I/O
 > In order to perform I/O, you need to create objects using appropriate Java I/O classes.
-* Scanner class for writing data <br/>
+* <strong>Scanner</strong> class for writing data <br/>
 ![image](https://user-images.githubusercontent.com/64727012/168412446-563511f2-37bf-4ff3-8ab3-41807347c4b2.png)
 
-* PrintWriter class for reading data <br/>
+* <strong>PrintWriter</strong> class for reading data <br/>
 ![image](https://user-images.githubusercontent.com/64727012/168412434-39a221b9-9410-4704-9a5f-53c040dd627a.png)
 
 ### Reading Data from the Web
@@ -355,13 +358,58 @@ Scanner input = new Scanner(url.openStream());
   * public BufferedInputStream(InputStream in, int bufferSize)
   * public BufferedOutputStream(OutputStream out)
   * public BufferedOutputStream(OutputStream out, int bufferSize)
+* <strong>ObjectInputStream/ObjectOutputStream</strong>
+  * <strong>ObjectInputStream/ObjectOutputStream</strong> enables you to perform I/O for objects in addition for primitive type values and strings.
+  * <strong>ObjectInputStream</strong>
+    * public ObjectInputStream(InputStream in)<br/>
+![image](https://user-images.githubusercontent.com/64727012/168428434-6cfa2bf6-8d43-470b-9f0d-89088caef0cc.png)
+  * <strong>ObjectOutputStream</strong>
+    * public ObjectOutputStream(OutputStream out)<br/>
+![image](https://user-images.githubusercontent.com/64727012/168428444-51a71cd5-ac8e-41de-a9d1-d866c2c78824.png)
 
 #### Checking End of File
-> You can use <strong>input.available()</strong> to check it. <strong>input.available() == 0</strong> indicates that it is the end of a file.
+> You can use <strong>input.available()</strong> to check it. <strong>input.available() == 0</strong> indicates that it is the end of a file. 
 
+### Random Access Files
+> All of the streams you have used so far are known as <strong>read-only or write-only streams.
+> </strong> The external files of these streams are sequential files that cannot be updated without creating a new file. 
+> It is often necessary to modify files or to insert new records into files. 
+> Java provides the RandomAccessFile class to allow a file to be read from and write to at random locations.
 
+![image](https://user-images.githubusercontent.com/64727012/168429101-308ae4c2-29f5-4b02-93cc-3fe1036eb5cc.png)
+#### RandomAccessFile Methods
+> Many methods in <strong>RandomAccessFile</strong> are the same as those in <strong>DataInputStream and DataOutputStream.</strong> 
+> For example, <strong>readInt(), readLong(), writeDouble(), readLine(), writeInt(), and writeLong()</strong> can be used in data input stream or data output stream as well as in RandomAccessFile streams.
 
+#### File Pointer
+> A random access file consists of a sequence of bytes. 
+> There is a special marker called file pointer that is positioned at one of these bytes. 
+> A read or write operation takes place at the location of the file pointer. 
+> When a file is opened, the file pointer sets at the beginning of the file. 
+> When you read or write data to the file, the file pointer moves forward to the next data.
 
+## The Serializable interface
+> Not all objects can be written to an output stream. 
+> Objects that can be written to an object stream is said to be serializable.
+> So the class of a serializable object must implement Serializable. <br/>
+> The Serializable interface is a marker interface. 
+> It has no methods, so you don't need to add additional code in your class that implements Serializable.
+
+## The transient Keyword
+> If an object is an instance of Serializable, but it contains non-serializable instance data fields, can the object be serialized? The answer is no. To enable the object to be serialized, you can use the transient keyword to mark these data fields to tell the JVM to ignore these fields when writing the object to an object stream.
+
+```java
+public class Foo implements java.io.Serializable {
+  private int v1;
+  private static double v2;
+  private transient A v3 = new A();
+}
+class A { } // A is not serializable
+```
+* When an object of the Foo class is serialized, only variable v1 is serialized. Variable v2 is not serialized because it is a static variable, and variable v3 is not serialized because it is marked transient. If v3 were not marked transient, a <strong>java.io.NotSerializableException</strong> would occur.
+
+### Serializing Arrays
+> An array is serializable if all its elements are serializable. So an entire array can be saved using writeObject into a file and later restored using readObject.
 
 
 <strong>Reference</strong>
