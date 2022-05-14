@@ -182,16 +182,51 @@
 ![image](https://user-images.githubusercontent.com/64727012/168409589-a7f0b1da-2bce-42ad-bd86-8b1b02cabe79.png)
 
 ## Dynamic Binding
-> Suppose an object o is an instance of classes : C1,C2,...,Cn-1 and Cn.<br/>
-> C1 is most specific class, Cn is most general class. In java, Cn is the Object class. <br/>
-> If o invokeds a method p, the JVM in turn searches the implementation for the method p in C1,C2,...,Cn-1, and Cn, until it is found.<br/>
-> Once an implementation is found, the search stops and the first-found implementation is invoked.
+1. Suppose an object o is an instance of classes : C1,C2,...,Cn-1 and Cn.<br/>
+2. C1 is most specific class, Cn is most general class. In java, Cn is the Object class. <br/>
+3. If o invokeds a method p, the JVM in turn searches the implementation for the method p in C1,C2,...,Cn-1, and Cn, until it is found.<br/>
+4. Once an implementation is found, the search stops and the first-found implementation is invoked.
 
+## Casting Object
+> You have already used the casting operator to convert variables of one primitive type to another. Casting can also be used to convert an object of one class type to another within an inheritance hierarchy.
 
+### Why Casting Is Necessary?
+* Why does the statement <strong>Object o = new Student()</strong> work and the statement <strong>Student b = o</strong> doesn’t?
+* This is because a Student object is always an instance of Object, but an Object is not necessarily an instance of Student.
+* Even though you can see that o is really a Student object, the compiler is not so clever to know it.
+* To tell the compiler that o is a Student object, <strong>use an explicit casting</strong>.
+* Ex)<strong> Student b= (Student)o; </strong>
+* Explicit casting must be used when casting an object from a superclass to a subclass.
 
+## The instatnceof Operator
+Use the instanceof operator to test whether an object is an instance of a class.
 
+## Accessibility Summary
+![image](https://user-images.githubusercontent.com/64727012/168410354-d76265c8-7b2f-4363-be2b-381e858e7bc2.png)
+### A Subclass Cannot Weaken the Accessibility
+* A subclass may override a protected method in its superclass and change its visibility to public.
+* However, a subclass cannot weaken the accessibility of a method defined in the superclass.
+For example, if a method is defined as public in the superclass, it must be defined as public in the subclass.
 
+## The final Modifier
+* The final class cannot be extended
+* The final variable is a constant
+* the final method cannot be overridden by its subclasses.
 
+## The ArrayList Class
+>You can create an array to store objects. But the array’s size is fixed once the array is created. Java provides the ArrayList class that can be used to store an unlimited number of objects.
+
+### Generic Type
+> ArrayList is known as a generic class with a generic type E.<br/>
+> You can specify a concrete type to replace E when creating an ArrayList. <br/>
+> For example, the following statement creates an ArrayList and assigns its reference to variable cities. <br/>
+> This ArrayList object can be used to store strings.
+```java
+
+ArrayList<String> cities = new ArrayList<String>();
+ArrayList<String> cities = new ArrayList<>();
+
+```
 
 
 
