@@ -411,6 +411,12 @@ class A { } // A is not serializable
 ### Serializing Arrays
 > An array is serializable if all its elements are serializable. So an entire array can be saved using writeObject into a file and later restored using readObject.
 
+## What is Generics?
+> <strong>Generics</strong> is the capability to parameterize types. 
+> With this capability, you can define a class or a method with generic types that can be substituted using concrete types by the compiler.
+
+
+
 
 <strong>Reference</strong>
 * Y. Daniel Liang, "Introduction to Java Programming, 10th Edition"
