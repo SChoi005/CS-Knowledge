@@ -228,5 +228,11 @@ ArrayList<String> cities = new ArrayList<>();
 
 ```
 
+## Exception Handling
+## Exception Types
+![image](https://user-images.githubusercontent.com/64727012/168411048-c1a60148-ea25-4c20-815e-e661709b2a2a.png)
 
 
+
+<strong>Reference</strong>
+* Liang, "Introduction to Java Programming, 10th Edition"
