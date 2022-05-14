@@ -229,10 +229,88 @@ ArrayList<String> cities = new ArrayList<>();
 ```
 
 ## Exception Handling
-## Exception Types
+
+### Exception Types
 ![image](https://user-images.githubusercontent.com/64727012/168411048-c1a60148-ea25-4c20-815e-e661709b2a2a.png)
 
+#### System Errors
+> System errors are thrown by JVM and represented in the <strong>Error</strong> class.
+> The <strong>Error</strong> class describes internal system error. 
+> Such errors rarely occur. 
+> If one does, there is little you can do beyond notifying the user and trying to terminate the program gracefully.
+
+#### Exceptions
+> <strong>Exception</strong> describes errors caused by your program and external circumstances. 
+> These errors can be caught and handled by your program.
+
+* Runtime Exceptions
+  * RuntimeException is caused by programming errors, such as bad casting, accessing an out-of-bounds array, and numeric errors.
+
+#### Checked Exceptions vs Unchecked Exceptions
+> <strong>RuntimeException, Error</strong> and their subclasses are known as <strong>unchecked exceptions.</strong> <br/>
+> All other exceptions are known as <strong>checked exceptions</strong>, meaning that the compiler forces the programmer to check and deal with the exceptions.
+* Unchecked Exceptions
+  * In most cases, unchecked exceptions reflect programming logic errors that are not recoverable. These are the logic errors that should be corrected in the program.
+
+### Cautions When Using Exceptions
+> Exception handling separates error-handling code from normal programming tasks, thus making programs easier to read and to modify.
+
+### When to Throw Exceptions
+> An exception occurs in a method. If you want the exception to be processed by its caller, you should create an exception object and throw it. If you can handle the exception in the method where it occurs, there is no need to throw it. <br/>
+> You should use it to deal with unexpected error conditions. <br/>
+> Do not use it to deal with simple, expected situations.
+
+  ```java
+  try {
+    System.out.println(refVar.toString());
+  }
+  catch (NullPointerException ex) {
+    System.out.println("refVar is null");
+  }
+  
+  /* is better to be replaced by */
+  if (refVar != null)
+    System.out.println(refVar.toString());
+  else
+    System.out.println("refVar is null");
+  ```
+### Defining Custom Exception Classes
+* Use the exception classes in the API whenever possible.
+* Define custom exception classes if the predefined classes are not sufficient.
+* Define custom exception classes by extending Exception or a subclass of Exception.
+
+### Assertions
+> An assertion is a Java statement that enables you to assert an assumption about your program. 
+> An assertion contains a Boolean expression that should be true during program execution. 
+> Assertions can be used to assure program correctness and avoid logic errors.
+
+### Using Exception Handling or Assertions
+* Assertion should not be used to replace exception handling. Exception handling deals with unusual circumstances during program execution. Assertions are to assure the correctness of the program.
+* Do not use assertions for argument checking in public methods. Valid arguments that may be passed to a public method are considered to be part of the method’s contract.
+* Use assertions to reaffirm assumptions. This gives you more confidence to assure correctness of the program.
+
+## The File Class
+> The File class is a wrapper class for the file name and its directory path.
+![image](https://user-images.githubusercontent.com/64727012/168412343-60f4029c-0df1-4c39-ab25-4b5864bd5345.png)
+
+## Text I/O
+> In order to perform I/O, you need to create objects using appropriate Java I/O classes.
+* Scanner class for writing data
+![image](https://user-images.githubusercontent.com/64727012/168412446-563511f2-37bf-4ff3-8ab3-41807347c4b2.png)
+
+* PrintWriter class for reading data
+![image](https://user-images.githubusercontent.com/64727012/168412434-39a221b9-9410-4704-9a5f-53c040dd627a.png)
+
+### Reading Data from the Web
+> Just like you can read data from a file on your computer, you can read data from a file on the Web.
+
+```java
+
+URL url = new URL("www.google.com/index.html");
+Scanner input = new Scanner(url.openStream());
+
+```
 
 
 <strong>Reference</strong>
-* Liang, "Introduction to Java Programming, 10th Edition"
+* Y. Daniel Liang, "Introduction to Java Programming, 10th Edition"
