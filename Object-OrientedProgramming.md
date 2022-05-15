@@ -411,12 +411,60 @@ class A { } // A is not serializable
 ### Serializing Arrays
 > An array is serializable if all its elements are serializable. So an entire array can be saved using writeObject into a file and later restored using readObject.
 
-## What is Generics?
+## Generic
+### What is Generics?
 > <strong>Generics</strong> is the capability to parameterize types. 
 > With this capability, you can define a class or a method with generic types that can be substituted using concrete types by the compiler.
 
+### Why Generics?
+> The key benefit of <strong>generics</strong> is to enable errors to be detected at compile time rather than runtime.
+> A generic class or method permits you to specify allowable types of objects that the class or method may work with. 
+> If you attempt to use the class or method with an incompatible object, a compile error occurs.
 
+### Generic ArrayList in JDK 1.5
+![image](https://user-images.githubusercontent.com/64727012/168453015-9470083e-cf73-404a-83fd-8dd05e75c294.png)
 
+### GenericStack
+![image](https://user-images.githubusercontent.com/64727012/168453056-a5cc7b25-8c1f-4d64-a880-db796211889b.png)
+
+### Declaring Generic Methods
+```Java
+
+public static <E> void print(E[] list) {
+  for (int i = 0; i < list.length; i++)
+    System.out.print(list[i] + " ");
+  System.out.println();
+}
+
+```
+### Bounded Generic Type
+```Java
+public static void main(String[] args ) {
+  Rectangle rectangle = new Rectangle(2, 2);
+  Circle circle = new Circle (2);
+  System.out.println("Same area? " + equalArea(rectangle, circle));
+}
+
+public static <E extends GeometricObject> boolean equalArea(E object1, E object2) {
+  return object1.getArea() == object2.getArea();
+}
+
+```
+* <strong>Even if not extends but implements, use extends.</strong>
+
+### Wildcards
+* <strong>? (unbounded wildcard)</strong>
+* <strong>? extends T (bounded wildcard)</strong>
+* <strong>? super T (lower Bound wildcard)</strong>
+
+### Generic Types and Wildcard Types
+![image](https://user-images.githubusercontent.com/64727012/168453503-45ff67d3-95ec-4395-bdab-c2b3c29f3d9c.png)
+
+### Restrictions on Generics
+1. <strong>Cannot Create an Instance of a generic Type. e.g., new E()</strong>
+2. <strong>Generic Array Creation is Not Allowed. e.g., new E[100]</strong>
+3. <strong>A Generic Type Parameter of a Class Is Not Allowed in a Static Context.</strong>
+4. <strong>Exception Classes Cannot be Generic.</strong>
 
 <strong>Reference</strong>
 * Y. Daniel Liang, "Introduction to Java Programming, 10th Edition"
