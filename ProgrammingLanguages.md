@@ -64,6 +64,9 @@
 * Strong/Weak typing
   * Strong typing is to inspect whether two data types are compatible, if they do not, to occur error or convert data type compulsorily. Conversely, Weak typing is not to inspect data type and not to be responsible for behaviors of programmers.  
 
+## Interpreters and Compilers
+![image](https://user-images.githubusercontent.com/64727012/168457685-b14da7da-b9b7-4b23-8e9a-e73a003c3177.png)
 
-
+<strong>Reference</strong>
+* Robert W. Sebestra, Concepts Of Programming Languages 10th Edition
 
