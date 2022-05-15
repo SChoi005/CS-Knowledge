@@ -118,10 +118,20 @@
 3. Axiomatic Semantics
     * Rather than directly specifying the meaning of a program, axiomatic semantics specifies what can be proven about the program, Program Correctness Proving.
 
+## Name, Special Words, and Variable
+### Name
+> A name is a string of characters used to identify some entity in a program.
+### Special Words
+> Special words in programming languages are used to make programs more readable by naming actions to be performed.<br/>
+> A special word of a programming language that cannot be used as a name.<br/>
+> It is <strong>keyword.</strong>
+### Variable
+* Name
+* Address
+* Type
+* Value
 
-
-
-
+## Binding
 
 
 <strong>Reference</strong>
