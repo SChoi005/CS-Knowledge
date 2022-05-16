@@ -132,6 +132,35 @@
 * Value
 
 ## Binding
+> A <strong>binding</strong> is an association between an attribute and an entity, such as between a variable and its type or value, or between an operation and a symbol.<br/>
+> The time at which a binding takes place is called <strong>binding time</strong>.
+
+### Type Bindings
+> Before a variable can be referenced in a program, it must be bound to a data type. 
+> The two important aspects of this binding are how the type is specified and when the binding takes place.
+* <strong>Static Type Binding</strong>
+  * <strong>Explicit declaration</strong> : It is a statement in a program that lists variable names and specifies that they are a particular type.
+  * <strong>Implicit declaration</strong> : It is  a means of associationg variables with types through default conventions, rather than declaration statements. <strong>e.g., type inference -> var</strong>
+  * Both explicit and implicit declarations create static bindings to types.
+* <strong>Dynamic Type Binding</strong>
+  * The variable is bound to a type when it is assigned a value in an assignment statement.
+  * It is important to realize that the type of a variable whose type is dynamically bound may be temporary.
+  * The primary advantage of dynamic binding of variables to types is that it provides more programming flexibility. 
+  * For example, a program to process numeric data in a language that uses dynamic type binding can be written as a generic program, meaning that it is capable of dealing with data of any numeric type.
+### Storage Bindings and Lifetime
+> The memory cell to which a variable is bound somehow must be taken from a pool of available memory. 
+> This process is called <strong>allocation. <br/>Deallocation</strong> is the process of placing a memory cell that has been unbound from a variable back into the pool of available memory.<br/>
+> The <strong>lifetime</strong> of a variable is the time during which the variable is bound to a specific memory location.
+* <strong>Static Variables</strong>
+  * <strong>Static variables</strong> are those that are bound to memory cells before program execution begins and remain bound to those same memory cells until program execution terminates.
+* <strong>Stack-Dynamic Variable</strong>
+  * <strong>Stack-dynamic variables</strong> are those whose storage bindings are created when their declaration statements are elaborated, but whose types are statically bound.
+  * <strong>Elaboration</strong> of such a declaration refers to the storage allocation and binding process indicated by the declaration, which takes place when execution reaches the code to which the declaration is attached. Therefore, elaboration occurs during run time.
+* <strong>Explicit Heap-Dynamic Variable</strong>
+  * <strong>Explicit heap-dynamic variables</strong> are nameless (abstract) memory cells that are allocated and deallocated by explicit run-time instructions written by the programmer.
+  * These variables, which are allocated from and deallocated to the heap, can only be referenced through pointer or reference variables.
+* <strong>Implicit Heap-Dynamic Variable</strong>
+  * <strong>Implicit Heap-Dynamic Variable</strong> bound to heap storage only when they are assigned values. In fact, all their attributes are bound every time they are assigned, JavaScript
 
 
 <strong>Reference</strong>
