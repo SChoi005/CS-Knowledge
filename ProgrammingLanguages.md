@@ -162,6 +162,21 @@
 * <strong>Implicit Heap-Dynamic Variable</strong>
   * <strong>Implicit Heap-Dynamic Variable</strong> bound to heap storage only when they are assigned values. In fact, all their attributes are bound every time they are assigned, JavaScript
 
+## Scope
+
+### Static Scope
+* Scope of a variable can be statically determined.
+* Nested static scopes : Ada, JavaScript, Common LISP, Scheme, Fortran 2003+, F#, Python, JavaScript Example
+* Not nested static scopes : C, Java
+
+### Dynamic Scope
+* APL, SNOBOL4, and the early versions of LISP
+* Dynamic scoping is based on the calling sequence of subprograms
+
+## Data Types
+
+
+
 
 <strong>Reference</strong>
 * Robert W. Sebestra, "Concepts Of Programming Languages, 10th Edition"
