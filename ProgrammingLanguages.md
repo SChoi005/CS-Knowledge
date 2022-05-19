@@ -175,6 +175,141 @@
 
 ## Data Types
 
+### Primitive Types
+* byte, short, int, long, float, double, char, boolean
+* one byte - true false / 0, null - false, otherwise - true
+
+### String Types
+* In Java, String is object class and immutable, but StringBuffer and StringBuilder is mutable.
+
+### Enumeration Types
+* Java enum
+```java
+
+enum MyFavoriteColor {RED, BLUE, GREEN, YELLOW};
+MyFavoriteColor color = MyFavoriteColor.BLUE;
+
+
+```
+* C++ enum
+```cpp
+
+enum class Color { red, blue, green };
+Color col = Color::red;
+
+```
+
+
+### Array Types
+* Array is a homogeneous aggregate of data elements in which an individual element is identified by its position in the aggregate.
+* All elements are same type.
+* Elements of generic arrays are references to objects.
+* In Java, Array is a kind of class type.
+* Jagged Arrays( Ragged Arrays) - one in which the lengths of the rows need not be the same.<br/>
+![image](https://user-images.githubusercontent.com/64727012/169301890-6daedec4-4040-4d5b-aea8-bb5e5882630b.png)
+
+### Record Types
+* Record is an aggregate of data elements in which the individual elements are identified by names and accessed through offsets from the beginning of the structure.
+```cpp
+struct { 
+	int id;
+	double num;
+}
+
+```
+
+### Tuple Types
+* Tuple is similar to a record, except that the elements are not named.
+* Python, immutable tuple
+```python
+myTuple = (3, 5.8, 'apple’)
+myTuple[1]  – first element
+# Tuple index starts from 1.
+
+```
+
+### List Types
+* Lisp
+* ML
+  * all elements are same type
+  ```ml
+  [5, 7, 9]
+  
+  ```
+* Python
+  * elements are any data value or object
+  ```python
+  myList = [3, 5.8, "grape"]
+  x = myList[1]  	# x is 5.8
+  r = range(1, 6) # r is [1, 2, 3, 4, 5]
+  ```
+
+### Union, Pointer, Reference (C, C++)
+* Union
+  * Variables of Union can store different type values at different times in same location.
+  ```cpp
+  union { 
+	  int id;
+	  double num;
+  }
+  ```
+* Pointer
+  * Variables of Pointer have a range of values of memory addresses.
+  ```cpp
+  int* px;
+  ```
+* Reference
+  * Reference refers  to an object or a value in memory
+  ```cpp
+  int result = 0;
+  int &ref_result = result;
+  ref_result = 100; // result is 100
+  ```
+
+### Class Types, Fuction Types
+* Class Type (Object-Oriented Programming)
+  * In Java all non-primitive types are Class type.
+  * Variable Name represents reference of a class instance.
+  * In python and groovy, All numeric types are class type.
+* Function Types (Functional Programming)
+  * Functions as first-class citizens
+    1. passing functions as arguments to other functions
+    2. returning functions as the values from other functions
+    3. assigning functions to variables
+ 
+### Type Checking
+* Checking the operands of an operator are of compatible types.
+* Compatible type – legal for the operator or allowed under implicit language rules(coercion)
+* Coercion – Automatic conversion
+* Type error – In case of the application of an operator to an operand of an inappropriate type
+* According to Type Checking time, classifying Dynamic type checking, Static type checking
+* According to rigidity of Type Casting, classifying Strong Typing, Weak Typing
+
+#### Classifying Type Checking
+![image](https://user-images.githubusercontent.com/64727012/168457368-7b6b91b3-f5d2-4e94-a986-35ba78e45bc2.png)
+ 
+#### Static Type vs Dynamic Type
+* Static Type Checking – all bindings of variables to types are static<br/>
+e.g., Ada, C, C++ C#, COBOL, F#, Fortran, Go, Haskell, Java, Kotlin, ML, Modula-2, Pascal, Rust, Scala, Swift
+
+* Dynamic type checking – type checking at run time<br/>
+e.g., Clojure, Erlang, Groovy, JavaScript, Lisp, Lua, Objective-C, Perl, PHP, Prolog, Python, R, Ruby, Scratch
+
+#### Strong Type vs Weak Type
+* strongly typed – type safe(prevent type error), type safe coercion<br/>
+e.g., Java, Python, Groovy, C#, Ruby
+
+
+* weakly typed – void* of C, unsafe operation, indiscreet coercion, Union type<br/>
+e.g., C, C++, JavaScript, Perl
+
+### Type Equivalence
+* Type compatibility – the types of operands that are acceptable for each of the operators 
+* Type Equivalence – an operand of one type in an expression is substituted for one of the other type, without coercion. compatibility without coercion
+* Name type equivalence – the same declaration or in declarations that use the same type name
+* Structure type equivalence – identical structures(same tree structure)
+
+ 
 
 
 
