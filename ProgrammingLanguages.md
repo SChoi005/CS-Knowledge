@@ -309,9 +309,76 @@ e.g., C, C++, JavaScript, Perl
 * Name type equivalence – the same declaration or in declarations that use the same type name
 * Structure type equivalence – identical structures(same tree structure)
 
- 
+## Operator Evaluation Order
+* Precedence <br/>
+![image](https://user-images.githubusercontent.com/64727012/169315715-9299fbd7-e37a-4d2a-8b59-6e80400b69c4.png)
 
+* Associativity<br/>
+![image](https://user-images.githubusercontent.com/64727012/169315723-cf2737bf-d928-46d0-98ea-10594f7ea3ee.png)
 
+* Java Operator Precedence
+![image](https://user-images.githubusercontent.com/64727012/169315886-646ce76e-95e7-407b-8b8e-1cdfc0e8fd1a.png)
+
+## Side Effects
+> Function chages either one of its parameters or a global variable.
+
+## Operator overloading
+> Multiple use of an operator, e.g., can use + as int +, float + or String +. We can define functions related to operator according to PL.
+
+## Type Conversions
+* Coercion
+  * Type conversion occurs implicitly as conventions for implicit operand type conversions
+    * C++, Java, C# -- widening
+    * ML and F# do not coerce operands in expressions
+* Type Cast
+  * explicit type conversions 
+    * Java
+    ```java
+    (int)angle
+    ```
+    * C++
+    ```cpp
+    static_cast<int>(angle)
+    ```
+## Short-Circuit Evaluation
+> Result is determined without evaluationg all of the operands and.or operators.<br/>
+> ``` if((a>=0)&&(b<10)) ``` if a<0, no more evaluation.
+
+## Control Structures
+> Selection statements, e.g., if/else
+
+## Multiple-Selection statements
+> e.g., switch
+
+## Implementing Multple Selection structures
+* Python
+```python
+
+if count < 10 :
+    bag1 = True
+elif count < 100 :
+    bag2 = True
+elif count < 1000 :
+    bag3 = True
+
+```
+* Java
+```java
+
+if (count < 0)
+    bag1 = true;
+else if (count < 100)
+    bag2 = true;
+else if (count < 1000)
+    bag3 = true;
+
+```
+
+## Iterative Statements (Loop)
+> e.g., for
+
+## Logically Controlled Loops
+> e.g., while, do-while
 
 <strong>Reference</strong>
 * Robert W. Sebestra, "Concepts Of Programming Languages, 10th Edition"
