@@ -581,7 +581,46 @@ void sub(float total, int part) {
 ```
 ![image](https://user-images.githubusercontent.com/64727012/169544591-e4447174-8225-4138-833c-646eeb42c170.png)
 
+* Example Without Recursion
+```c
+void fun1(float r) {
+  int s, t;  🡨 Point 1
+  fun2(s);
+  ...
+}
+void fun2(int x) {
+  int y;  🡨 Point 2
+  fun3(y);
+  ...
+}
+void fun3(int q) {
+ ...  🡨 Point 3
+}
+void main() {
+  float p;
+  fun1(p);
+  ...
+}
+```
+![image](https://user-images.githubusercontent.com/64727012/169545973-250d8a20-2165-4d40-b2b4-2671e7f2d63e.png)
 
+* Example With Recursion
+```c
+int factorial(int n) {
+  🡨 Point 1
+  if (n <= 1)
+    return 1;
+  else return (n * factorial(n - 1));
+  🡨 Point 2
+}
+void main() {
+  int value;
+  value = factorial(3);
+  🡨 Point 3
+}
+```
+
+![image](https://user-images.githubusercontent.com/64727012/169545989-8388c321-68d2-4e4d-9135-31e67a774b9e.png)
 
 
 
