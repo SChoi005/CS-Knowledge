@@ -380,6 +380,212 @@ else if (count < 1000)
 ## Logically Controlled Loops
 > e.g., while, do-while
 
+## General Subprogram Characteristics
+* Each subprogram has a single entry point.
+* The calling program unit is suspended during the execution of the called subprogram.
+* Control always returns to the caller.
+* Exception : coroutines and concurrent units.
+
+## Basic Definitions
+* Subprogram definition
+  ```javascript
+  
+  function cube(x) return x * x * x end
+  cube = function (x) return x * x * x end
+  
+  ```
+* Subprogram call
+  * Explicit request that a specific subprogram be executed.
+
+## Parameters
+* Two ways to gain access to the data
+  * Direct access to nonlocal variables
+    * Extensive access to nonlocals can reduce reliability
+  * Parameter passing
+    * more flexible (Call by value, call by address)
+* Formal parameters
+  * Parameters in the subprogram header
+* Actual parameters
+  * In subprogram, a list of parameters to be boud to the formal parameters. 
+* Positional parameters
+  * Binding of actual parameters to formal parameters is done by position
+* Keyword parameters
+  * The name of the formal parameter to which an actual parameter is to be bound is specified with the actual parameter in a call
+  * In c++, default parameter
+
+## Procedures and Functions
+* Two distinct categories of subprograms
+  * Procedures
+  * Functions
+* Function has return values
+* Procedure has no return value
+
+## Desigin Issue for Subprograms
+
+### Are local variables statically or dynamically allocated?
+* Local Variables
+  * static or stack-dynamic
+  * stack-dynamic
+    * Advantage
+      * recursive subprograms
+      * storage for local variables in an active subprogram can be shared with the local variables in all inactive subprograms
+    * Disadvantage 
+      * cost of the time required to allocate, initialize (when necessary), and deallocate such variables for each call to the subprogram
+      * accesses to stack-dynamic local variables must be indirect, whereas accesses to static variables can be direct
+
+### Can subprogram definitions appear in other subprogram definitions (nested)?
+* Nested Subprograms
+  * Allowed (Directly descending from Algol 60)
+    * e.g., Algol 68, Pascal, and Ada
+  * Not allowed (Direct descendants of C)
+    * e.g, C, C++, Java, C#
+  * New Allowed
+    * e.g., JavaScript, Python, Ruby, Lua, Most functional programming languages
+
+### What parameter-passing method or methods are used?
+* Parameter-passing
+  * Pass-by-Value(in model) -- the value of the actual parameter is used to initialize the corresponding formal parameter
+  * Pass-by-Result(out model) -- corresponding formal parameter acts as a local variable, but just before control is
+  * transferred back to the caller, its value is transmitted back to the caller’s actual parameter
+  * Pass-by-value-result(inout model) --  combination of pass-by-value and pass-by-result
+  * Pass-by-reference(inout model) – pass an address, the actual parameter is shared 
+  * Pass-by-Name(inout model) -- textually substituted for the corresponding formal parameter, Macros in assembly languages, generic subprograms in C++, Java 5.0, and C# 2005
+* Parameter-Passing in Languages
+  * C -- Pass-by-value. Pass-by-reference (inout mode) semantics is achieved by using pointers as parameters
+  * C++ -- Pass-by-reference added using special pointer type, called a reference type 
+  * Java -- Pass-by-value. But object reference passed as a parameter cannot itself be changed in the called subprogram
+  * C# -- Pass-by-value. Pass-by-reference can be specified by preceding both a formal parameter and its corresponding actual parameter with ref
+  * PHP – similar to C# 
+  * Python and Ruby -- Pass-by-assignment. actual parameter value is assigned to the formal parameter
+
+
+### If subprograms can be passed as parameters and subprograms can be nested, what is the referencing environment of a passed subprogram?
+* Subprograms as Parameters
+  * subprogram names can be sent as parameters to other subprograms
+  * Problem 1 -- type checking the parameters of the activations of the subprogram that was passed as a parameter. In C and C++, function pointer can be passed as parameters
+  * Problem 2 -- referencing environment for executing the passed subprogram when it is nested subprogram shallow binding, deep binding, ad hoc binding
+```javascript
+function sub1() {
+  var x;  
+  function sub2() {  
+    alert(x);
+  };
+  function sub3() {
+    var x;
+    x = 3;
+    sub4(sub2);
+  };
+  function sub4(subx) {
+    var x;
+    x = 4;
+    subx();
+  };
+  x = 1;
+  sub3();
+};
+```
+
+### Can subprograms be overloaded?
+* a subprogram that has the same name as another subprogram in the same referencing environment
+* The meaning of a call to an overloaded subprogram is determined by the actual parameter list
+* Parameter coercions, when allowed, complicate the disambiguation process enormously, best match
+
+### Can subprograms be generic?
+* Polymorphic subprogram 
+  * parameters of different types on different activations
+* Ad hoc polymorphism 
+  * Overloaded subprograms
+* Subtype polymorphism 
+  * Object-oriented programming, a variable of type T can access any object of type T or any type derived from T
+* Parametric polymorphism 
+  * generic parameters that are used in type expressions that describe the types of the parameters of the subprogram
+* C++
+```cpp
+template <class Type>
+  Type max(Type first, Type second) {
+  return first > second ? first : second;
+}
+```
+* Java
+```java
+public static <T extends Comparable> T doIt(T[] list) {
+  ...
+}
+```
+* C#
+```c#
+class MyClass {
+  public static T DoIt<T>(T p1) {
+    ...
+  }
+}
+```
+
+### If the language allows nested subprograms, are closures supported?
+* Closures
+  * subprogram and the referencing environment where it was defined
+  * Nearly all functional programming languages, most scripting languages, imperative language, C#, support closures
+  * Javascript
+  ```javascript
+  function makeAdder(x) {
+   return function(y) {return x + y;}
+  } 
+  ...
+  var add10 = makeAdder(10);
+  var add5 = makeAdder(5);
+  
+  document.write("Add 10 to 20: " + add10(20) + "<br />");
+  document.write("Add 5 to 20: " + add5(20) + "<br />"); 
+
+  ```
+  * Groovy
+  ```groovy
+  class Equipment {
+   def calculator
+   Equipment(calc) { calculator = calc }
+   def simulate() {
+     println "Running simulation"
+     calculator() // We may send parameters as well
+   }
+  }
+  def eq1 = new Equipment({ println "Calculator 1" })
+  def aCalculator = { println "Calculator 2" }
+  def eq2 = new Equipment(aCalculator)
+  def eq3 = new Equipment(aCalculator)
+  eq1.simulate()
+  eq2.simulate()
+  eq3.simulate()
+ 
+  ```
+
+## Coroutines
+* Coroutines can have multiple entry points
+* the invocation of a coroutine is called a resume
+
+## Activation record
+> format, or layout, of the non-code part of a subprogram.<br/>
+![image](https://user-images.githubusercontent.com/64727012/169544302-ee60acd9-191b-436e-ba9d-e0381b3aee44.png)
+
+### Activation record with Stack-Dynamic Local Variables
+* languages with stack-dynamic local variables, activation record instances must be created dynamically
+* dynamic link -- a pointer to the base of the activation record instance of the caller
+* run-time stack -- activation records on a stack<br/>
+![image](https://user-images.githubusercontent.com/64727012/169544318-89df89bc-3eba-40e4-a0c6-6f4ff0c1cd45.png)
+* Example
+```c
+void sub(float total, int part) {
+  int list[5];
+  float sum;
+  ...
+}
+```
+![image](https://user-images.githubusercontent.com/64727012/169544591-e4447174-8225-4138-833c-646eeb42c170.png)
+
+
+
+
+
+
 <strong>Reference</strong>
 * Robert W. Sebestra, "Concepts Of Programming Languages, 10th Edition"
 
