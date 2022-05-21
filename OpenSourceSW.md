@@ -74,6 +74,8 @@
 ### Distruptive Innovation
 > By developing and starting from providing technologies for Low-end customers, process that pushes existed competitors that are in high-end.<br/>
 
+![image](https://user-images.githubusercontent.com/64727012/169639390-59bb97fc-dc40-4948-8bca-2a27de0894e5.png)
+
 ### 21 century open source
 * Ecosystem suitable for innovation
   * Cloud computing, big data, containers, AI
