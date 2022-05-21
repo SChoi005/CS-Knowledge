@@ -622,9 +622,81 @@ void main() {
 
 ![image](https://user-images.githubusercontent.com/64727012/169545989-8388c321-68d2-4e4d-9135-31e67a774b9e.png)
 
+## Abstraction
+
+### Concept of Abstraction
+* Abstraction 
+  * a view or representation of an entity that includes only the most significant attributes. allows one to collect instances of entities into groups in which their common attributes need not be considered
+* process abstraction 
+  * subprograms data abstraction – COBOL record structure, C struct
+
+### Data Abstraction
+* Abstract data type 
+  * enclosure specific data type and the operations for that type { Data + Operation }
+* Object 
+  * instance of an abstract data type
+* Object-oriented programming
+  * data abstraction is one of fundamental components
+* Information Hiding 
+  * private, public
+* Encapsulation 
+  * header and implementation files
+
+### Parameterized Abstract Data Types
+* C++ – Template 
+* Java – Generic Class
+  ```java
+	Collection<?> c = new ArrayList<String>(); 
+	<T extends Comparable>
+  ```
+* C# – Generic classes were added to C# in its 2005 version
+
+### Naming Encapsulations
+* C++ Namespaces
+* Java Packages -- import
+* Ada Packages – with, use
+* Ruby Modules 
+
+## Object-Oriented Programming
+
+* Abstract data types
+* Inheritance
+* Polymorphism
+  * Polymorphism provided by the dynamic binding of messages to method definitions
+* Information Hiding
+* Purpose is Program Reuse
+* Exclusivity of Objects
+  * wrapper classes for the nonobject types
+* Subclasses are Subtypes
+  * “is-a” relationship, a variable of the derived class type could appear anywhere of the parent class type was legal
+* Single and Multiple Inheritance
+  * Single e.g, Java
+  * Multiple e.g., C++, Python
+    * Maintenance of systems that use multiple inheritance can be a more serious problem
+* Allocation and Deallocation of Objects 
+  * run-time stack or explicitly created on the heap
+* Nested Classes
+* Initialization of Objects
+
+### UML relationship
+![image](https://user-images.githubusercontent.com/64727012/169634333-b88eb512-f42b-49eb-83ac-37a8269c5765.png)
+
+### Abstract Classes and Interfaces
+* Java Abstract Number Class<br/>
+![image](https://user-images.githubusercontent.com/64727012/169634391-b7876c0c-50d3-47ed-ba66-fa079bc6a064.png)
+* Java Interfaces<br/>
+![image](https://user-images.githubusercontent.com/64727012/169634526-aa1363e4-342d-466a-adb1-d4682d3a0133.png)
+* Instance vs Static
+* Inheritance vs. Aggregation
+  * Is-A, Has-A
+* Interfaces vs. Abstract Classes
+
+
+
+
+
 
 
 
 <strong>Reference</strong>
 * Robert W. Sebestra, "Concepts Of Programming Languages, 10th Edition"
-
