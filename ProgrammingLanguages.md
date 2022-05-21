@@ -691,6 +691,8 @@ void main() {
   * Is-A, Has-A
 * Interfaces vs. Abstract Classes
 
+### UML Class Diagram
+![image](https://user-images.githubusercontent.com/64727012/169635215-00c84aa2-a2aa-4ebc-ad27-9854e3bf744c.png)
 
 
 
