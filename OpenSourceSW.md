@@ -86,8 +86,100 @@
   * Mix and match
   * Focus on implementation than Standard setting
 
+## Open Source Contracts and Management
 
+### Free Software
+* Richard Stallman
+  * GNU Manifesto (1985)
+  * Philosophy against of commercialization of software 
+* Free as in beer vs. <strong>free as in freedom</strong>
+  * Share source code
+  * Freely revision, distribution
 
+### Open Source
+> "Open Source Summit" - Tim O'Reilly (1998)
+
+* Include widely range of concept than free software.
+  * organization, collaboration, innovation, development 
+  * Pragmatism / Commercialism
+    * Active investment of big companies. e.g. IBM
+    * Laying the foundation for Internet service in the late 1990s
+
+### Open Source Licensing
+* Open Source Initiative (OSI)
+  1. Free redistribution
+  2. Source code
+  3. Allow modifications
+  4. No prohibitions about who or why
+  5. e.g. "Educational purposes only" - impossible!
+
+### Copyleft vs. Permissive
+* Copyleft License
+  * GNU General Public License (GPL): GCC, Linux
+  * If revise or distribute program, must distribute with source code of revised one. (reciprocity requirement)
+  * Prevent Free rider : tragedy of the commons
+* Permissive Licensee
+  * Apache, BSD, MIT License: Swift, Angular.js
+  * Users grant authority that is freely available to program.
+  * Can use commercially through Copyright
+  * Focus on activating community
+* Trend that prefer to Permissive License.
+* Flexibility
+  * Convenient for companies to use Open Source and closed source program together.
+* License Compatibility Problem
+  * Permissive license project can be granted GPL, but once it becomes GPL, it never come back.
+  * “Linux is a cancer” - Steve Ballmer, CEO of Microsoft (2001)
+* Participation
+  * The more users, the easier it is to activate
+* License is only requirement, activating of open source project is contingent on governance.
+
+### Governance
+* Operational methods that drive user compliance
+* First step : Policy
+  * Organize available license list and scope of use
+  * Preliminary investigation not to be problem legally
+* Second step : Process
+  * Continuing while project live
+  * By using scanning tool, organize license conflict and dependency between software component
+
+### Projects vs. Products
+* Projects (upstream)
+  * Code that developers contribute to 
+  * Community : core contributors, mailing lists, websites
+* Products (downstream)
+  * product made for solving costomer's business problem.
+  * Combine, sell and support project according to specific usage
+* Project and product are interdependent
+
+### Support
+* Product is concept that includes support to service by project satisfying customer's requirements
+  * Basic customer service : installation, solving error.
+  * Offering solution and required documentation when Several open source projects are connected 
+  * Life-cycle support : Version control, dependency solution
+  * Legal support : Management of intellectual property disputes, etc.
+  * e.g. Red Hat: Enterprise Linux subscription service
+
+### Security
+> “Security through obscurity is not true security”
+* Not guarantee security even if implementation is opaque
+* Because cyber attack penetrates already known weakness
+* "Many Eyes" : can recongnize and revise problem of project fastly
+* Continuously need security activity even if there are many users.
+
+### How to participate Open Source develop
+1. Start new Open Source Project develop
+   * Is new project needed?
+   * What is business objective through project?
+   * What is project develop requirement?
+   * Stand-alone project, foundation/company-backed?
+     * Linux Foundation, OpenStack Foundation, CNCF, etc. 
+   * Hosting / communication / governance model …
+2. Participate existed Open Source Project
+   * Identify community stucture and, lurk to understand norm and culture 
+   * Start small : indirect participation (documentation, funding)
+   * Code talks: quality, quantity, consistency of contributions
+   * Occasionally, companies contribute bug fixes and feature updates created for business needs.
+3. Need considerable time and effort to understand Licensing, compliance, and participation, etc.
 
 
 <strong>Reference</strong>
