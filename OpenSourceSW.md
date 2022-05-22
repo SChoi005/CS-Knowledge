@@ -181,6 +181,53 @@
    * Occasionally, companies contribute bug fixes and feature updates created for business needs.
 3. Need considerable time and effort to understand Licensing, compliance, and participation, etc.
 
+## Open Source Develop Model
+* A Toolbox of Practices
+  * Not one of standardized model, but change according to objective and requirement 
+* Success factor of Linux
+  * System that can release by applying numerous user feedback fastly
+  * In early days, frequently updating more than twice a day
+
+### The Cathedral and the Bazaar
+* The Cathedral
+  * According to a prior plan, skilled workers divide the labor
+  * Thoroughly management toward fixed destination
+  * e.g. GCC (GNU C Compiler)
+* The Bazaar
+  * No central control
+  * The quality of work varies and the efficiency may be lowered
+  * Value wide participation and experimentation, and continue organic evolution
+  * e.g. Linux
+* It is difficult to say that a certain system is superior
+  * Because insight comes about from individual, need develop model that recongnizes and reward good insight
+
+### Governance
+* Social and decision-making framework for a project
+  * Decision formation process
+  * Project's core principles
+  * Project's core goals
+  * community
+* Some decisions are required at the beginning of the project (License, IP, Goal, Range, Role assignment), but it is effective that most  decision is taken over to community
+
+### Decision-making approaches
+
+* Benevolent Dictator for Life (BDFL)
+  * A principal has final decision(mainly project initiator) about main matter
+  * e.g. Linux(Linus Torvalds)
+  * Generally the way in small project
+  * It is difficult for companies to participate
+    * May not be benevolent to new developer
+    * If not be recongnized to BDFL, occur second-class citizen issue
+  * Risk of fragmentation between BDFL and community
+* Meritocracy
+* Consensus (a.k.a. liberal contribution model)
+
+
+
+
+
+
+
 
 <strong>Reference</strong>
 * Gordon Haff, "How Open Source Ate Software"
