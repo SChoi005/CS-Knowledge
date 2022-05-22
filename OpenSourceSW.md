@@ -212,17 +212,62 @@
 ### Decision-making approaches
 
 * Benevolent Dictator for Life (BDFL)
-  * A principal has final decision(mainly project initiator) about main matter
+  * A principal has right of final decision(mainly project initiator) about main matter
   * e.g. Linux(Linus Torvalds)
   * Generally the way in small project
   * It is difficult for companies to participate
     * May not be benevolent to new developer
-    * If not be recongnized to BDFL, occur second-class citizen issue
+    * If not be recognized to BDFL, occur second-class citizen issue
   * Risk of fragmentation between BDFL and community
 * Meritocracy
+  * If be recognized ability, be granted permmision of code repository from develop community.
+  * e.g. Apache Foundation
+  * Merit is evaluated mainly based on experience and knowledge
 * Consensus (a.k.a. liberal contribution model)
+  * Get bigger effectness according to recent contribution 
+  * Decision is made through consensus process like vote, etc.
 
+### Basic Principle of Open Source
+* Open First
+  * Make decision related project openly
+  * Transparency, openness and encouraging participation are important 
+* Separate between skill and business decision
+  * Open source projects should be steered, at least in part, by those contributing the code
+  * Upstream development handled by contributors, downstream product decisions lead by companies
+* Example : Kubernetes
 
+### Set Goal
+* Should be detail and clear by giving direction
+  * What value do we make?, How?, For Who? 
+
+### Community
+* Leaders
+  * Have right of final decision about feature, release, etc.
+  * BDFL, committee, or voting group 
+* Maintainers
+  * Maintain/manage the part of the project you are responsible for
+  * close to editor than programmer
+  * Legal work, event planning, bug tracker management, etc.
+* Committers
+  * Developers who can summit in person to code base
+  * Reviewed by maintainer
+* Contributors
+  * All Contributions are reviewed before submission 
+  * Reflect review, feedback and resubmission by passing through more than one time
+  * Occasionally, program user becomes contributor
+
+### Encouraging New Contributors
+> As it is frequent that contributor gets out project, community should always receive new contributor
+1. Exchange control for influence
+  * The more freely it is, the more contributions there are
+2. Reducing Friction of Tools
+  * Develop environment or infrastructure could form barriers to entry
+  * simplify set-up by using virtual machine, container
+  * Through modular design, give environment that contributor can develop independently from other parts
+3. Mentoring
+  * Short term expense is occured by requiring mentor's time investment and sincerity, but it is necessary to maintain project in the long run
+
+4. Culture
 
 
 
