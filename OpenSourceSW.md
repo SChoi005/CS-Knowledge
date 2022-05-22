@@ -259,17 +259,31 @@
 ### Encouraging New Contributors
 > As it is frequent that contributor gets out project, community should always receive new contributor
 1. Exchange control for influence
-  * The more freely it is, the more contributions there are
+   * The more freely it is, the more contributions there are
 2. Reducing Friction of Tools
-  * Develop environment or infrastructure could form barriers to entry
-  * simplify set-up by using virtual machine, container
-  * Through modular design, give environment that contributor can develop independently from other parts
+   * Develop environment or infrastructure could form barriers to entry
+   * simplify set-up by using virtual machine, container
+   * Through modular design, give environment that contributor can develop independently from other parts
 3. Mentoring
-  * Short term expense is occured by requiring mentor's time investment and sincerity, but it is necessary to maintain project in the long run
+   * Short term expense is occured by requiring mentor's time investment and sincerity, but it is necessary to maintain project in the long run
+   * Start from giving a small work
+   * Prompt feedback and update are important
+4. Culture 
+   * Culture orienting empathy, respect, and inclusiveness
+   * Members could feel as sense of belonging is reward 
 
-4. Culture
+### Evaluation criteria (Metrics and Data)
+> “Humans adjust their behavior based on the metrics”
 
-
+* Selection of evaluation criteria
+  * e.g. batting average vs. On-Base Percentage (Moneyball) 
+  * An important metric selection process required
+* Interpretation of indicators
+  * e.g. Are bug report increments always bad? What if the number of users increased? 
+* Soft Metrics
+  * Elements that occur costs, such as surveys and interviews, but are necessary for the project to be sustainable in the long run. 
+  * Community Composition: What is the ratio of independent developers to enterprise developers? Isn't the influence of developers from specific companies too great?.
+  * How satisfied is the community? Is communication between members working well?
 
 
 
