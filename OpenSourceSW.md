@@ -285,6 +285,102 @@
   * Community Composition: What is the ratio of independent developers to enterprise developers? Isn't the influence of developers from specific companies too great?.
   * How satisfied is the community? Is communication between members working well?
 
+## Categories of Business Models
+
+### Direct Subsidies
+* Free technical support service at the Apple Store Genius Bar
+
+### Two-sided Markets
+* Facebook gives user free service and gives companies Ads and information of user.
+* “If you’re not paying, you’re the product”
+
+### Freemium
+* Basic products is available for free, but cost to upgrade.
+* Free app of Appstore
+* Main goal : Proper balance between free and pay.
+  * If free product is so good, would not upgrade.
+  * If free product is poor, would not use.
+* "Sales funnel"
+  * Potential paying customers
+  * Raising awareness and inducing evaluation
+
+### Open Core
+* As a kind of Freemium, give software for free, but sell additional functions for pay.
+  * e.g. MySQL database 
+* Similar to Open Source, Anyone participates develop freely, but grant owner selling permmision about some code
+  * Contributor license agreement (CLA)
+* Not a true Open Source development model
+* Difficulty in encouraging contributors to voluntarily participate due to the perception that the seller owns the project and community 
+
+### Subscriptions and Support
+* Red Hat(est. 1993)
+  * By starting selling own Linux distribution to companies, give suppport through subscription service.
+* Many of Red Hat are core contributors of Linux
+  * Customer service based on professionalism about Linux
+  * In person, Update at Linux according to customer's needs   
+* The organization can focus on core competency and adjust material needed for develop
+* License vs. Subscription
+  * Selling License model has incentive to release new version than to improve existed products 
+  * It is subscription model's goal to retain customers, it is core to update continuously
+  * Expecially, Subscription model in Open Source has advantage of retaining available permmision about software if supscription is ended
+
+### From competition to cooperation
+* Traditionally, Cooperation between competition companies is loss economically
+  * Prisoner’s dilemma, free rider problem
+* But, in modern software industry, be rising of cooperative competition inspired by Open Source Development Model.
+* Competition in traditional industry
+  * If competition company has company information, decline profit(patents, trade secrets, etc.) 
+* Collaborative Innovation (MIT economist Eric von Hippel) 
+  * Software Industry
+    * Low communication cost
+    * High design cost
+  * If cooperation is successful, pay only a portion of the design cost, enjoy the value of the entire project, and increase the possibility of innovation
+  * It is economically beneficial to grow whole pie rather than “free riding”.
+* Through cooperation of competition companies through Open Source
+  * Development of interoperable solutions and standards.
+  * R&D risk sharing.
+  * Capable of responding to complex customer needs (DevOps).
+
+### Standards
+1. Formal standard
+   * Industry representatives form a standards organization and establish and publish standards as a formal meeting 
+   * e.g. OSI model
+2. Standards based on usage
+   * Implicit standards based on users' usage patterns
+   * TCP/IP (1960s) by DARPA
+* Open Source
+  * Companies cooperate according to requirement
+  * From beginning, All details are not assigned  
+
+### Agile (2001)
+> Methodology focused on practical coding rather than systemical plan
+* Individuals and Interactions over processes and tools
+* Working Software over comprehensive documentation
+* Customer Collaboration over contract negotiation
+* Responding to Change over following a plan
+
+![image](https://user-images.githubusercontent.com/64727012/169698973-d271be3f-0376-4cc5-b26e-5d40bce1d3d4.png)
+
+### DevOps (2009)
+> As expended concept of Agile, apply principle and convention of Open source to project management and culture.<br/>
+> Faster, more flexible, incremental : continuous improvement based on metrics
+* Separate role between developer(Dev) and Operation organization(Ops)
+  * Ops give environment for Dev to be active, and do not interfere 
+
+![image](https://user-images.githubusercontent.com/64727012/169698975-31d8f11e-cb19-4135-9264-ec28c314d15f.png)
+
+### Minimization of communication
+* Communication is effective in small team (2-pizza teams -- not more than 8 or 9 people) -> O(n^2)
+* Communication minimization through Well-documented public interface.
+* Modularity : Design to reduce task dependence of each team and to be active independently
+
+### Structured Design
+![image](https://user-images.githubusercontent.com/64727012/169699229-7ea12ac3-eb16-4967-8acb-7b04f551e8ab.png)
+
+### Agile Development
+![image](https://user-images.githubusercontent.com/64727012/169699243-d955818a-dbbd-46a3-892a-3e62a5e5e64b.png)
+
+
 
 
 
