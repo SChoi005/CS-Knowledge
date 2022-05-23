@@ -380,6 +380,65 @@
 ### Agile Development
 ![image](https://user-images.githubusercontent.com/64727012/169699243-d955818a-dbbd-46a3-892a-3e62a5e5e64b.png)
 
+## The Challenges Open Source Will Solve
+
+### Trend Trends Threatening Open Source
+* General characteristic of Open Soruce development
+  * Unbundling, mix & match, tinkering center
+  * Infrastructure tool-oriented development (Linux, Apache web server, etc.)
+* Below trends threnten Open Source
+  1. Advent of Cloud Computing
+  2. Change commercial value of software
+  3. Pursuit convenience of costumers
+
+### Rise of Cloud Computing
+* In 2000s : PC age distriuted computing
+* In 2010/2020s : Due to advent of integrated stack of Cloud-based companies, re-centralization
+* Cloud giants 
+  * Cloud giants contribute opensource a little(e.g. Google Kubernetes), but because it is more that developers in companies use opensource only at Enterprise program, There is Open Source Project sustainability crisis 
+
+### Commercial value of software
+> As popularlization of computer, convenience and simplicity are important
+* Presence as a part of complete product by bundling with hardware
+* Decline commercial value of software itself
+* Incline simple program for End-user.
+* e.g. Apple iPhone -> Not sell iPhone OS and capable of development only in App Store ecosystem
+
+### Pursuit convenience
+* Serverless computing
+  * Cloud provider is charge of distribution of server resources
+  * the most active infrastructure in open source become abstract.
+  * e.g. AWS Lambda
+* Event-driven
+  * Program flow is decided from events or information
+  * Optimization in small on-demand application development  
+
+## New Opportunity of Open Source
+> Open Source apart from software code and development model is applied variously
+
+### Open Data
+* Value
+  * Rising value by prevailing Machine Learning model.
+  * Google, Facebook
+    * Even if the program is open source, data is not
+  * Transparency
+    * Trend that public institute data is opened to public 
+    * There is trade off between transparency and privacy
+    * When anonymized data is also mixed with other information, privacy concerns arise. 
+    * e.g. Netflix Prize(2006)
+### Open Information
+> Users produce new contents under Creative Commons open source license
+
+### Open Education
+> Lowering barriers to entry into education
+* MOOC (Massive Open Online Courses)
+  * MIT OpenCourseWare, Coursera, Udacity, edX
+
+
+### Open Hardware
+* Arduino Project
+* Raspberry Pi 
+
 
 
 
