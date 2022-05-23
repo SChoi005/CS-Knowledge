@@ -386,7 +386,7 @@
 * General characteristic of Open Soruce development
   * Unbundling, mix & match, tinkering center
   * Infrastructure tool-oriented development (Linux, Apache web server, etc.)
-* Below trends threnten Open Source
+* Trends threnten Open Source
   1. Advent of Cloud Computing
   2. Change commercial value of software
   3. Pursuit convenience of costumers
