@@ -176,6 +176,93 @@
 *  The web app is focused on a single topic or task
 *  The web app oﬀers some sort of interface that enables the user to operate the app in one or more ways
 
+### Local Web Development Environment
+* <strong>integrated development environment (IDE) – Eclipse, STS</strong>
+* <strong>A web server – Apache2, Tomcat, NginX</strong>
+* <strong>A relational database management system (RDBMS) – MySQL, Postgresql</strong>
+* <strong>A server-side programming language – PHP, Java, Python, JavaScript</strong>
+* <strong>An interface for controlling (starting, stopping, and so on) the web server</strong>
+* <strong>An interface for accessing and manipulating the RDBMS – PHPMyAdmin, MySQL Workbench</strong>
+
+### XAMPP for Windows Development Environment
+* <strong>Apache:</strong> This is an open-source web server that runs about half of all the websites on Earth
+* <strong>MariaDB:</strong> This is an open-source server database that is fully compatible with MySQL
+* <strong>PHP:</strong> This is the server-side programming language
+* <strong>phpMyAdmin:</strong> This is an interface that enables you to access and manipulate MariaDB databases
+* <strong>Linux</strong> -- LAMP
+
+### Web Hosting Providers
+* Free hosting provider – wordpress.com
+* Commercial hosting provider
+  1. Storage space
+  2. Bandwidth
+  3. Domain name -- GoDaddy or Register.com
+  4. Email addresses
+  5. Shared server, Dedicated server – Cloud, Virtual Machine
+  6. Operating system -- Unix (or Linux) and Windows Server
+  7. Databases
+  8. Uptime 
+  9. Tech support
+  10. FTP support
+  11. Website statistics
+  12. Ecommerce
+  13. Scalability
+<br/>
+<br/>
+<br/>
+
+### ...HTML tags, and CSS skip ...
+
+<br/>
+<br/>
+<br/>
+
+### What Can You Do with JavaScript?
+* You can ask a web server for data and then display that data on your page
+* You can add, modify, or remove page text, HTML tags, and even CSS properties
+* You can display messages to the user and ask the user for info
+* You can “listen” for and then perform actions based on events such as visitors clicking their mouse or pressing a key
+* You can send the user’s browser to another page
+* You can validate the values in a form before submitting it to the server
+* You can collect, save, and retrieve data for each of your users, such as site
+* customizations
+
+### What Can’t You Do with JavaScript?
+* It can’t write data permanently to an existing file. For example, you can’t take the data from a guest book and add it to a page that displays the messages
+* It can’t access files on the server
+* It can’t get any information about the user, including email or IP addresses
+* It can’t submit credit card–based purchases for authorization and payment
+* It can’t create multiplayer games
+* It can’t get data directly from a server database
+* It can’t handle file uploads
+
+<br/>
+<br/>
+<br/>
+
+### ...Javascript code, and jQuery skip ...
+
+<br/>
+<br/>
+<br/>
+
+### Reactive Pages with Events
+* What’s an event?
+  * Loading the page
+  * Clicking a button
+  * Pressing a key
+  * Scrolling the page
+* Event handler
+  * Event listener: An instruction to the web browser to watch out for (“listen” for) a particular event occurring on a particular element
+  * Callback function: The code that the web browser executes when it detects that the event has occurred
+
+#### Event Types
+* <strong>Document:</strong> Events that fire in relation to the loading of the document object
+* <strong>Mouse:</strong> Events that fire when the user does something with the mouse
+* <strong>Keyboard:</strong> Events that fire when the user interacts with the keyboard
+* <strong>Form:</strong> Events associated with web page forms
+* <strong>Browser window:</strong> Events that fire when the user interacts with the browser window
+
 
 
 <strong>Reference</strong>
