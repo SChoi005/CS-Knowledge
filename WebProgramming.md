@@ -98,12 +98,12 @@
 
 * <strong>Adaptive design</strong>
   * detect the user device and to redirect the user to a website designed especially for this resolution
-  * <a href="amazon.com">Amazon.com</a>
+  * <a href="https://www.amazon.com">Amazon.com</a>
 
 #### Responsive design Pros and Cons
 ![image](https://user-images.githubusercontent.com/64727012/170272749-e9743dd3-18e9-40f1-85a1-9aceceb25124.png)
 
-### Adaptive design Pros and Cons
+#### Adaptive design Pros and Cons
 ![image](https://user-images.githubusercontent.com/64727012/170272804-5c873d9c-d09f-44e0-a9d9-20db3c1134fb.png)
 
 
