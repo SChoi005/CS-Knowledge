@@ -137,10 +137,44 @@
     * The initial load may require more time
     * Requires an external library in most cases
 
+## Web Coding & Development All-in-One For Dummies
 
+### How the web works
+1. You tell the web browser the web page you want to visit
+2. The browser decodes the URL – DNS(host name to IP Address)
+3. The browser contacts the web server and requests the web page
+4. The web server decodes the page request
+5. The web server sends the web page file to the web browser
+6. The web browser decodes the web page file
+7. If the web page requires more resources, the web browser asks the server to pass along those resources
+8. For each of the requested resources, the web server locates the associated file and sends it to the browser
+9. The web browser gathers up all the text, images, and other resources and
+10. displays the page in all its digital splendor in the browser’s content window
 
+![image](https://user-images.githubusercontent.com/64727012/170277284-065f85fe-b676-422a-bcf9-7f873f080372.png)
 
+* <strong>Front-end</strong>
+  * That part of the web page that the web browser displays in the browser window. That is, it’s the page stuﬀ you see and interact with.
+  * HTML, CSS
+* <strong>Back-end</strong>
+  * That part of the web page that resides on the web server. That is, it’s the page stuﬀ that the server gathers based on the requests it receives from the browser
+  * PHP, MySQL
+* <strong>Front-end, meet Back-end: JavaScript</strong>
+  * jQuery
 
+### How Dynamic Web Pages Work
+* JavaScript determines the data that it needs from the server
+* JavaScript sends a request for that data to the server
+* The PHP script receives the request and passes it along to MySQL
+* MySQL uses the SQL command to extract the required information from the database and then return that data to the PHP script
+* The PHP script manipulates the returned MySQL data into a form that JavaScript can use
+* PHP sends the JSON data back to JavaScript
+* JavaScript displays the data on the web page
+
+### What is a Web App?
+> It’s actually something very similar to an app on a device or PC. That is, it’s a website, built using web technologies such as HTML, CSS, and JavaScript. A web app is a website that looks and acts like an app on a device or computer
+*  The web app is focused on a single topic or task
+*  The web app oﬀers some sort of interface that enables the user to operate the app in one or more ways
 
 
 
