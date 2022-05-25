@@ -106,6 +106,43 @@
 #### Adaptive design Pros and Cons
 ![image](https://user-images.githubusercontent.com/64727012/170272804-5c873d9c-d09f-44e0-a9d9-20db3c1134fb.png)
 
+### CSS box model
+![image](https://user-images.githubusercontent.com/64727012/170273587-d53e6304-211f-4564-b589-82d945193838.png)
+
+### What is Bootstrap?
+* <strong>Bootstrap</strong> is an open source HTML, CSS, and JS library that helps you build websites and apps very easily
+* <strong>Bootstrap Grid system</strong> 
+* <strong>Bootstrap navigation</strong> 
+
+### Server-side vs. Client-side rendering
+* <strong>What is a server-side rendering?</strong> 
+  * a request to the server is made, and it renders the website in HTML
+  * <strong>Pro :</strong>
+    * Better SEO because search engines can crawl the site
+    * The initial page loads faster
+    * Good for static sites
+  * <strong>Cons :</strong>
+    * Frequent server requests
+    * Slower rendering
+    * Page has to reload every time
+* <strong>What is a client-side rendering?</strong>
+  * rendered with JavaScript. Instead of getting the HTML by itself, you're getting a simple HTML structure but with JavaScript to render the rest of the HTML with your browser
+  * AngularJS, ReactJS, VueJS
+  * <strong>Pro :</strong>
+    * Faster rendering after the initial load
+    * Good for web applications
+    * Fewer requests to the server
+  * <strong>Cons :</strong>
+    * Bad SEO if not implemented correctly
+    * The initial load may require more time
+    * Requires an external library in most cases
+
+
+
+
+
+
+
 
 <strong>Reference</strong>
 * "Practical Web Design"
