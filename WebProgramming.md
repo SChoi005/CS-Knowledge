@@ -92,11 +92,19 @@
   * New way of designing for the desktop, and also for the mobile interface
   * Use the same content, but a different layout for the design on each screen
   * Create a universal look and feel with one design that varies from device to device
+
+![image](https://user-images.githubusercontent.com/64727012/170272565-6dcf563e-026c-4c16-9c4f-6fee2933ead5.png)
+
+
 * <strong>Adaptive design</strong>
   * detect the user device and to redirect the user to a website designed especially for this resolution
-  * <a href="Amazon.com">Amazon.com</a>
+  * <a href="amazon.com">Amazon.com</a>
 
+#### Responsive design Pros and Cons
+![image](https://user-images.githubusercontent.com/64727012/170272749-e9743dd3-18e9-40f1-85a1-9aceceb25124.png)
 
+### Adaptive design Pros and Cons
+![image](https://user-images.githubusercontent.com/64727012/170272804-5c873d9c-d09f-44e0-a9d9-20db3c1134fb.png)
 
 
 <strong>Reference</strong>
