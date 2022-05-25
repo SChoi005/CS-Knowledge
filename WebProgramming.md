@@ -4,7 +4,7 @@
 
 ### Evolution of Web Design
 * <strong>The first ever website : The beginning of the World Wide Web</strong>
-  * <a href="http://info.cern.ch/">http://info.cern.ch/</a>
+  * <a href="http://info.cern.ch/" target="_blank">http://info.cern.ch/</a>
 * <strong>Table-based layouts : Introducing table markup in HTML</strong>
   * Texts and images were dancing across websites everywhere
 * <strong>Introduction of Flash: The renaissance of web design </strong>
@@ -98,7 +98,7 @@
 
 * <strong>Adaptive design</strong>
   * detect the user device and to redirect the user to a website designed especially for this resolution
-  * <a href="https://www.amazon.com">Amazon.com</a>
+  * <a href="https://www.amazon.com" target="_blank">Amazon.com</a>
 
 #### Responsive design Pros and Cons
 ![image](https://user-images.githubusercontent.com/64727012/170272749-e9743dd3-18e9-40f1-85a1-9aceceb25124.png)
