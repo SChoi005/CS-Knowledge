@@ -263,6 +263,138 @@
 * <strong>Form:</strong> Events associated with web page forms
 * <strong>Browser window:</strong> Events that fire when the user interacts with the browser window
 
+## Responsive Web Design by Example
+
+### What is Responsive Web Design?
+
+* Responsive design philosophy
+* Responsive design principles
+* Responsive versus adaptive
+* Screen resolution
+* Media queries
+* Relative units
+* Maximum and minimum values
+* Mobile or desktop first
+* Bitmaps versus vectors
+* Responsive grids and columns
+
+### What is Bootstrap, Why Do We Use It?
+* Brief history 
+  * In 2011, Bootstrap was created by two Twitter employees 
+  * In early 2012 after a lot of contributions from the core team and the community, Bootstrap 2 was born
+  * In 2013, Bootstrap 3 was released with a mobile-first approach
+  * Current version, Bootstrap 4
+*  Why use Bootstrap?
+  * A responsive grid 
+  * Cross browser compatibility -- Normalize.css 
+  * Various UI components
+  * Extremely easy to start using Bootstrap in your website
+  * Bundles common JavaScript plugins such as jQuery
+  * Customizable, allowing you to remove any unnecessary features 
+
+#### Bootstrap's grid system
+* <strong>Columns</strong>: These are the horizontal containers for storing content on a single row
+* <strong>Rows</strong>: These are top level containers for storing columns
+
+![image](https://user-images.githubusercontent.com/64727012/170705356-7a16c87c-c30a-40d0-96f7-c083f21772ea.png)
+
+* <strong>Basics</strong>
+  * Two Column Types
+    * .container -- Used for a fixed width
+    * .container fluid -- Used for full width to span the entire browser
+  * Row -- used to horizontally group columns
+    * .row
+* <strong>Suppose a row is 12 columns</strong>
+  * .col-6: Spans six columns on all screen sizes
+  * .col-md-6: Spans six columns only on medium screen sizes
+* <strong>Column Width</strong>
+
+![image](https://user-images.githubusercontent.com/64727012/170705806-e56f4a2d-0dc8-4838-895c-0ff2fb40a83c.png)
+
+#### Usage and Example
+* <strong>Equal width columns example</strong>
+
+![image](https://user-images.githubusercontent.com/64727012/170706157-083f5558-58b3-4cce-a266-b328eb94d13b.png)
+
+* <strong>Multi-row, equal-width columns example</strong>
+ 
+![image](https://user-images.githubusercontent.com/64727012/170706168-15f40418-5285-417c-ae36-02d50842bde9.png)
+
+* <strong>Multi-row, equal-width columns without multiple rows example</strong>
+
+![image](https://user-images.githubusercontent.com/64727012/170706178-4a0f2706-b87c-4cd8-8d09-24ae9b802683.png)
+
+* <strong>Differently sized columns</strong>
+
+![image](https://user-images.githubusercontent.com/64727012/170706297-1eb8ba74-3743-4bc2-b617-c57ef73add46.png)
+
+* <strong>Mixing and matching</strong>
+
+![image](https://user-images.githubusercontent.com/64727012/170707581-96d2b1db-2c15-4d6e-a1c5-3e5e4f0171a4.png)
+
+### Reusable Project Template
+
+#### What is a reusable project template?
+* Include HEADER_FILE
+* Main content for page
+* Include FOOTER_FILE
+
+#### Development environment prerequisites
+* <strong>XAMPP</strong>
+  * OS – macOS, Windows, Linux
+  * Apache2
+  * MySQL – Changed to MariaDB
+  * PHP, Perl
+* <strong>Install to Ubuntu 16.04</strong>
+  * Install Apache2
+  * Install mysql
+  * Install php 7
+  * $ sudo apt-get install libapache2-mod-php7.0
+  * /var/www/html/phpinfo.php
+  * After make <?php phpinfo(); ?>, check in Web Browser http://localhost/phpinfo.php
+
+#### Responsive Versus Adaptive Design
+* <strong>Responsive design</strong>
+  * new way of designing for the desktop, and also for the mobile interface
+  * use the same content, but a different layout for the design on each screen
+  * create a universal look and feel with one design that varies from device to device
+* <strong>Adaptive design</strong>
+  * detect the user device and to redirect the user to a website designed especially for this resolution
+  * <a href="https://www.amazon.com" target="_blank">Amazon.com</a>
+
+#### Abstraction
+1. index.html to index.php
+2. Create a folder called SNIPPETS, with two PHP files HEADER.php and FOOTER.php
+
+![image](https://user-images.githubusercontent.com/64727012/170709755-e3c88ebd-d2d3-4865-901d-12a0beaf0fc6.png)
+
+### Creating the Introduction Section
+* <strong>Single-page website</strong>
+  * A website with only a single page split into sections, using buttons to anchor to the different sections
+  * Ex) <a href="https://www.kitkat.com/android/">https://www.kitkat.com/android/</a>
+* <strong>Used in</strong>
+  * Portfolio
+  * Landing page
+  * Coming soon page
+  * App page
+  * Simple gallery
+  * Product page
+
+### Jumbotron
+
+* Feature of Bootstrap
+* Big displays that are used at sporting events
+* Implementing a basic jumbotron
+
+![image](https://user-images.githubusercontent.com/64727012/170710639-9c5bd278-c9f0-4c07-8e90-b4e69f77fd26.png)
+
+### Creating a Generic Reusable Single Page Section
+* <strong>Different sections in single page websites</strong>
+  * Contact form
+  * About us
+  * Projects/work
+  * Useful company info such as opening times
+
 
 
 <strong>Reference</strong>
