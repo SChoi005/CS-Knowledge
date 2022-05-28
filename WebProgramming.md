@@ -398,4 +398,7 @@
 
 
 <strong>Reference</strong>
-* "Practical Web Design"
+* Philippe Hong, "Practical Web Design"
+* Frahaan Hussain, "Responsive Web Design by Example"
+* Paul McFedries, "Web Coding & Development All-in-One For Dummies"
+* Jack Stouffer, Gareth Dwyer, Shalabh Aggarwal, "Flask: Building Python Web Services"
