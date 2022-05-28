@@ -669,6 +669,17 @@ if __name__ == '__main__':
 
 ![image](https://user-images.githubusercontent.com/64727012/170810483-15632fda-d920-4ed9-bd63-63ad096e62c5.png)
 
+### URI Format
+
+* URI = scheme "://" authority "/" path [ "?" query ] [ "#" fragment ]
+* Rule: A trailing forward slash (/) should not be included in URIs
+* Rule: Hyphens (-) should be used to improve the readability of URIs
+* Rule: Underscores (_) should not be used in URIs
+* Rule: Lowercase letters should be preferred in URI paths
+  1. http://api.example.restapi.org/my-folder/my-doc
+  2. HTTP://API.EXAMPLE.RESTAPI.ORG/my-folder/my-doc
+  3. http://api.example.restapi.org/My-Folder/my-doc
+  * First, Second are same, Third is different
 
 
 <strong>Reference</strong>
