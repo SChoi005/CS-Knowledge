@@ -395,6 +395,280 @@
   * Projects/work
   * Useful company info such as opening times
 
+## Flask : Building Python Web Services
+
+### Creating development environment
+* <strong>Install Python</strong>
+  1. Install Anaconda3
+  2. jupyter-notebook --generate-config
+  3. conda install virtualenv
+  4. conda create –n flask
+  5. pip install mysql-connector
+
+### Flask
+* <strong>Flask</strong> is a micro framework for Python web development
+* <strong>Django</strong> -- "fuller" framework, has own ORM
+* hello.py
+```python
+from flask import Flask
+app = Flask(__name__)
+@app.route("/")
+def index():
+    return "Hello, World!"
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
+
+```
+
+![image](https://user-images.githubusercontent.com/64727012/170809148-5bb0832c-4415-428e-a90b-9909560a4c63.png)
+
+#### Using Templates in Headlines Project
+* <strong>Jinja</strong> -- Python template engine. We can easily define dynamic blocks of HTML which are populated by Python
+* Flask was built on top of Jinja
+* templates directory
+<br/>
+
+* <strong>home.html</strong>
+
+```html
+<html>
+  <head>
+    <title>Headlines</title>
+  </head>
+  <body>
+    <h1>Headlines</h1>
+    <b>{{title}}</b><br />
+    <i>{{published}}</i><br />
+    <p>{{summary}}</p>
+  </body>
+</html>
+```
+
+* <strong>python code</strong>
+```python
+@app.route("/")
+@app.route("/<publication>")
+def get_news(publication="bbc"):
+    feed = feedparser.parse(RSS_FEEDS[publication])
+    first_article = feed['entries'][0]
+    render_template("home.html",
+				title=first_article.get("title"),
+				published=first_article.get("published"),
+				summary=first_article.get("summary"))
+
+```
+
+
+* <strong>Advanced Jinja templates</strong>
+
+  * <strong>python code</strong>
+   ```python
+   render_template("home.html", articles=feed['entries'])
+   ```
+  * <strong>home.html</strong>
+   ```html
+
+   <html>
+       <head>
+           <title>Headlines</title>
+       </head>
+       <body>
+           <h1>Headlines</h1>
+           {% for article in articles %}
+               <b><a href="{{article.link}}">{{article.title}}</a></b><br />
+               <i>{{article.published}}</i><br />
+               <p>{{article.summary}}</p> 
+               <hr />
+           {% endfor %}    
+       </body>
+   </html>
+
+   ```
+
+#### User Input for Headlines Project
+* Getting user input using HTTP <strong>GET</strong>
+  * localhost:5000/?publication=bbc
+* Getting user input using HTTP <strong>POST</strong>
+  * used to post larger chunks of data or more sensitive data to the server
+  * not visible in the URL
+
+* <strong>headlines.py</strong>
+
+```python
+
+from flask import render_template
+from flask import request
+import json
+import urllib
+import urllib.request
+WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric
+
+publication = request.args.get('publication’)
+
+city = request.args.get('city’)
+query = urllib.parse.quote(city)
+url = WEATHER_URL.format(query)
+data = urllib.request.urlopen(url).read()
+parsed = json.loads(data.decode('utf-8'))
+
+```
+
+* <strong>home.html</strong>
+  * By default, this will create an HTTP GET request when submitted, by passing any inputs as GET arguments into the URL
+
+```html
+
+<form>
+  <input type="text" name="query" placeholder="search" />
+  <input type="submit" value="Submit" />
+</form>
+<form>
+  <input type="text" name="city" placeholder="weather search">
+  <input type="submit" value="Submit">
+</form>
+
+```
+
+#### Getting user input using HTTP POST
+* request.args.get -> request.form.get
+* @app.route("/") -> @app.route("/", methods=['GET','POST’])
+  * By default, only GET is permitted
+
+* HTML form use POST
+```html
+
+<form action="/" method="POST">
+
+```
+
+#### Parsing JSON with Python
+
+```python
+
+import json
+…
+parsed = json.loads(data.decode('utf-8'))
+weather = None
+if parsed.get('weather'):
+    weather = {'description': parsed['weather'][0]['description'],
+                   'temperature': parsed['main']['temp'],
+                   'city': parsed['name'],
+                   'country': parsed['sys']['country']
+                   }
+
+```
+
+* <strong>weather.json</strong>
+
+```json
+
+{
+ "coord":{"lon":-0.13,"lat":51.51},
+ "weather":[{"id":801,"main":"Clouds","description":"few clouds","icon":"02n"}], 
+ "base":"stations",
+ "main":{"temp":17.98,"pressure":1019,"humidity":77,"temp_min":15,"temp_max":21},
+ "visibility":10000, 
+ "wind":{"speed":0.5},
+ "clouds":{"all":20}, "dt":1534819800, 
+ "sys":{"type":1,"id":5091,"message":0.0052,"country":"GB","sunrise":1534827333,"sunset":1534878637}, 
+ "id":2643743, "name":"London","cod":200
+}
+
+
+```
+
+### Improving the User Experience 
+* Adding cookies to our Headlines application
+* Adding CSS to our Headlines application
+
+#### Using cookies with Flask
+* <strong>Setting cookies in Flask</strong>
+
+```python
+import datetime
+from flask import make_response
+…
+response = make_response(render_template("home.html", articles=articles,
+                                     weather=weather, currency_from=currency_from,
+                                     currency_to=currency_to, rate=rate, 
+                                     currencies=sorted(currencies)))
+expires = datetime.datetime.now() + datetime.timedelta(days=365)
+response.set_cookie("publication", publication, expires=expires)
+response.set_cookie("city", city, expires=expires)
+response.set_cookie("currency_from", currency_from, expires=expires)
+response.set_cookie("currency_to", currency_to, expires=expires)
+return response
+
+```
+
+* <strong>Retrieving cookies in Flask</strong>
+
+```python
+publication = request.cookies.get("publication")
+```
+
+* <strong>Fallback Logic – Finding Default Value</strong>
+```python
+def get_value_with_fallback(key):
+    if request.args.get(key):
+        return request.args.get(key)
+    if request.cookies.get(key):
+        return request.cookies.get(key)
+```
+
+### Cookies vs Session in Flask
+
+* <strong>Session</strong>
+  * Object which allows you to store information specific to a user from one request to the next. 
+  * Implemented on top of cookies
+  * Simmilar to cookies, but use like dictionary of python.
+
+```python
+
+app.secret_key = 'You Will Never Guess'
+@app.route('/setuser/<user>')
+def setuser(user):
+    session['user'] = user
+    return 'User value set to: ' + session['user']
+@app.route('/getuser')
+def getuser():
+    return 'User value was previously set to: ' + session['user’]
+
+```
+
+### Building RESTful APIs
+![image](https://user-images.githubusercontent.com/64727012/170810398-1384fa6b-47c8-41df-b4df-8279fb3995ee.png)
+
+#### HTTP codes used in REST 
+
+![image](https://user-images.githubusercontent.com/64727012/170810404-9362519e-caf8-4c00-94bd-afe12860d838.png)
+
+#### Using Flask-RESTful
+
+* Flask-RESTful is an extension for Flask that adds support for quickly building REST APIs
+* pip install flask-restful
+* from flask_restful import Resource, Api
+
+* <strong>RestHelloWorld.py</strong>
+```python
+
+from flask import Flask
+from flask_restful import Resource, Api
+app = Flask(__name__)
+api = Api(app)
+
+class HelloWorld(Resource):
+    def get(self):
+        return {'hello': 'world'}
+api.add_resource(HelloWorld, '/')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+```
+
+![image](https://user-images.githubusercontent.com/64727012/170810483-15632fda-d920-4ed9-bd63-63ad096e62c5.png)
+
 
 
 <strong>Reference</strong>
