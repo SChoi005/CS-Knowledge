@@ -1384,8 +1384,26 @@
     
     ```
 
-
 ### graph
+* <strong>Data structure representing n:n relation between linked elements</strong>
+  * e.g. subway, bus route, etc.  
+
+#### Graph Definition
+* G, graph, is represented by (V,E).
+  * Collection of vertex and edge. 
+* V (vertices) 
+  * Objects capable of having various characteristic
+  * V(G) => Collection of vertices of graph G.  
+* E (edge)
+  * Relation between vertices
+  * E(G) => Collection of edges of graph G. 
+
+![image](https://user-images.githubusercontent.com/64727012/172055281-90df9f7e-8d5f-4958-9295-d6a5dd575b4a.png)
+
+
+
+
+
 
 ## Sort
 
