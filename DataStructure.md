@@ -1146,6 +1146,154 @@
 ## Non-Linear Data Structure
 
 ### Tree
+* <strong>Non-linear data structure having 1:n relation between elements
+* Hierarchical Data Structure</strong>
+
+#### Term
+* <strong>Position in tree
+  * Root node => A first node of tree
+  * Leaf node => nodes not having child nodes
+  * Internal node => nodes having child nodes
+* Relation between nodes
+  * Parent node => Parent and child node are connected by edge
+  * Child node
+  * Ancestor node => All nodes in route from root node to parent node
+  * descendent node => All nodes below a specific node
+  * Sibling node => Child nodes of same parent node
+* Property of node
+  * Level => Distance from root node
+  * Height => Value that plus 1 at height of a child node that is at the longest distance from a root node 
+  * Degree => number of child node that a node has </strong> 
+
+#### Complete Binary Tree
+* <strong>All levels except last level are filled completely
+* Even if last level is not filled fully, a node must be filled from left to right
+* Implementation way : Array, Linked Data structure
+* Example : Preorder, Inorder, Postorder</strong>
+  ```c
+  #include<stdio.h>
+
+  typedef char datatype;
+
+  typedef struct BinaryTree {
+    datatype data;
+    struct BinaryTree* lLink;
+    struct BinaryTree* rLink;
+  }Tree;
+
+  Tree* init() {
+    Tree* temp = (Tree*)malloc(sizeof(Tree));
+    temp->lLink = NULL;
+    temp->rLink = NULL;
+  }
+
+  void setData(Tree* pTree, datatype data) {
+    pTree->data = data;
+  }
+
+  void makeLeftTree(Tree* sub, Tree* main) {
+    main->lLink = sub;
+  }
+  void makeRightTree(Tree* sub, Tree* main) {
+    main->rLink = sub;
+  }
+
+
+  void preorder(Tree* pTree) {
+    if (pTree == NULL) return 0;
+    printf("%c ", pTree->data);
+    preorder(pTree->lLink);
+    preorder(pTree->rLink);
+  }
+  void inorder(Tree* pTree) {
+    if (pTree == NULL) return 0;
+    inorder(pTree->lLink);
+    printf("%c ", pTree->data);
+    inorder(pTree->rLink);
+  }
+  void postorder(Tree* pTree) {
+    if (pTree == NULL) return 0;
+    postorder(pTree->lLink);
+    postorder(pTree->rLink);
+    printf("%c ", pTree->data);
+  }
+
+  int wholeNodeCount(Tree* pTree) {
+    if (pTree == NULL) return 0;
+    int left = wholeNodeCount(pTree->lLink);
+    int right = wholeNodeCount(pTree->rLink);
+    return 1 + left + right;
+  }
+
+  int terminalNodeCount(Tree* pTree) {
+    if (pTree == NULL) return 0;
+    if (pTree->lLink == NULL && pTree->rLink == NULL) return 1;
+    int left = terminalNodeCount(pTree->lLink);
+    int right = terminalNodeCount(pTree->rLink);
+    return left + right;
+  }
+  int rootNodeHeight(Tree* pTree) {
+    if (pTree == NULL) return 0;
+    int left = rootNodeHeight(pTree->lLink);
+    int right = rootNodeHeight(pTree->rLink);
+    if (left > right) {
+      return 1 + left;
+    }
+    else
+      return 1 + right;
+  }
+
+  int main()
+  {
+    Tree* head = init();
+    Tree* t1 = init();
+    Tree* t2 = init();
+    Tree* t3 = init();
+    Tree* t4 = init();
+    Tree* t5 = init();
+    Tree* t6 = init();
+    Tree* t7 = init();
+    Tree* t8 = init();
+    Tree* t9 = init();
+    Tree* t10 = init();
+
+    setData(head, 'A');
+    setData(t1, 'B');
+    setData(t2, 'C');
+    setData(t3, 'D');
+    setData(t4, 'E');
+    setData(t5, 'F');
+    setData(t6, 'G');
+    setData(t7, 'H');
+    setData(t8, 'I');
+    setData(t9, 'J');
+    setData(t10, 'K');
+
+    makeLeftTree(t1, head);
+    makeRightTree(t2, head);
+    makeLeftTree(t3, t1);
+    makeRightTree(t4, t1);
+    makeLeftTree(t5, t2);
+    makeRightTree(t6, t2);
+    makeLeftTree(t7, t3);
+    makeLeftTree(t8, t4);
+    makeRightTree(t9, t4);
+    makeRightTree(t10, t6);
+
+    printf("preorder : ");
+    preorder(head);
+    printf("\n\ninorder : ");
+    inorder(head);
+    printf("\n\npostorder : ");
+    postorder(head);
+    printf("\n\n이진 트리 노드 개수 : %d", wholeNodeCount(head));
+    printf("\n\n이진 트리 단말 노드 개수 : %d", terminalNodeCount(head));
+    printf("\n\n이진 트리 높이 : %d", rootNodeHeight(head));
+  }
+  
+  ```
+
+
 
 ### Priority queue and heap
 
@@ -1155,4 +1303,4 @@
 
 ## Search
 
-## Table and Hash
+## Hashing
