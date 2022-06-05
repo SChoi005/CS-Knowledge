@@ -641,8 +641,507 @@
     ```
 
 ### stack
+* <strong>Accessible only at top position
+* Last-In-First-Out (LIFO) 
+  * Insert/Delete : only at top postition => O(1)
+  * Peek => O(1)</strong>
+  
+  ![image](https://user-images.githubusercontent.com/64727012/172039199-c91b3a75-1b54-4559-ad3e-9d6522a31be2.png)
+
+* Example (Infix)
+  ```c
+  #include<stdio.h>
+  #include<string.h>
+  #include<stdlib.h>
+
+  typedef struct StackNode {
+    char data;
+    struct StackNode* front;
+  } Node;
+
+  typedef struct ArrayStack {
+    Node* top;
+    int index;
+  } Stack;
+
+  Stack* init() {
+    Stack* pstack = (Stack*)malloc(sizeof(Stack));
+    pstack->top = (Node*)malloc(sizeof(Node));
+    pstack->index = -1;
+    return pstack;
+  }
+
+  void push(Stack* pstack, int a) {
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->front = NULL;
+    node->data = a;
+    if (pstack->index == -1) {
+      pstack->top->front = node;
+    }
+    else {
+      node->front = pstack->top->front;
+      pstack->top->front = node;
+    }
+    pstack->index++;
+  }
+
+  void pop(Stack* pstack) {
+    Node* temp;
+    temp = pstack->top->front;
+    pstack->top->front = pstack->top->front->front;
+    free(temp);
+    pstack->index--;
+  }
+
+  void infixToPostfix(char* exp) {
+    Stack* operator = init();
+    Stack* sen = init();
+    int i = 0, count = 0;
+
+    while (exp[i] != '\0') {
+      if (exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '/') {
+        if (exp[i] == '+' || exp[i] == '-') {
+          push(operator, exp[i]);
+        }
+        else {
+          push(sen, exp[i + 1]);
+          push(sen, exp[i]);
+          i += 2;
+          count += 2;
+          continue;
+        }
+      }
+      else if (exp[i] == ')') {
+        push(sen, operator->top->front->data);
+        pop(operator);
+        count++;
+      }
+      else if (exp[i] == '(') {
+        i++;
+        continue;
+      }
+      else {
+        push(sen, exp[i]);
+        count++;
+      }
+      i++;
+    }
+    if (operator->index != -1) {
+      for (int i = 0; i <= operator->index; i++) {
+        push(sen, operator->top->front->data);
+        pop(operator);
+        count++;
+      }
+    }
+
+    char* temp = (char*)malloc(sizeof(char) * count);
+    for (int i = 0; i < count; i++) {
+      temp[count - 1 - i] = sen->top->front->data;
+      pop(sen);
+    }
+    for (int i = 0; i < count; i++)
+      exp[i] = temp[i];
+    for (int i = count; i < strlen(exp); i++) {
+      exp[i] = '\0';
+    }
+  }
+
+  int evalPostfix(char *exp) {
+    int result = 0;
+    int i = 0;
+    int temp1;
+    int temp2;
+    int sum;
+    int tmp;
+    Stack* num = init();
+    char c;
+
+    while (exp[i] != '\0') {
+      if (exp[i] == '+') {
+        temp1 = num->top->front->data;
+        pop(num);
+        temp2 = num->top->front->data;
+        pop(num);
+        sum = temp2 + temp1;
+        push(num, sum);
+      }
+      else if (exp[i] == '-') {
+        temp1 = num->top->front->data;
+        pop(num);
+        temp2 = num->top->front->data;
+        pop(num);
+        sum = temp2 - temp1;
+        push(num, sum);
+      }
+      else if (exp[i] == '/') {
+        temp1 = num->top->front->data;
+        pop(num);
+        temp2 = num->top->front->data;
+        pop(num);
+        sum = temp2 / temp1;
+        push(num, sum);
+      }
+      else if (exp[i] == '*') {
+        temp1 = num->top->front->data;
+        pop(num);
+        temp2 = num->top->front->data;
+        pop(num);
+        sum = temp1 * temp2;
+        push(num, sum);
+      }
+      else {
+        c = exp[i];
+        push(num, atoi(&c));
+      }
+      i++;
+    }
+    return num->top->front->data;
+  }
+
+
+  int main(void) {
+    int result;
+    char express[] = "((2-5)+(3*4-1)-(9/3))";	// 중위 연산식
+
+
+    printf("중위 표기식 : %s\n", express);
+
+    infixToPostfix(express);                            // 후위 표기법
+    printf("후위 표기식 : %s", express);
+
+    result = evalPostfix(express);                    // 후위 연산식 계산
+    printf("\n\n연산 결과 => %d", result);
+
+    getchar();
+  }
+
+  
+  ```
 
 ### Queue
+* <strong>A first-In element is deleted first
+* First-In-First-out (FIFO)</strong>
+  * Insert/Delete => O(1)
+
+  ![image](https://user-images.githubusercontent.com/64727012/172039374-76223ce2-b179-4d19-b838-0418f9d8c6d5.png)
+* Example
+  ```c
+  #include <stdio.h>
+  #include <stdlib.h>
+  #define MAX_QUEUE_SIZE	200 
+
+  typedef struct TaskCustomer {
+    int	id;
+    int	tArrival;
+    int	tService;
+  } Customer;
+
+  typedef Customer Element;
+
+  typedef struct CircularQueue {
+    Element data[MAX_QUEUE_SIZE];	// 요소의 배열
+    int	front;			// 전단
+    int	rear;			// 후단
+  } Queue;
+
+  void error(char* str)
+  {
+    fprintf(stderr, "%s\n", str);
+    exit(1);
+  };
+  // 큐의 주요 연산: 공통
+  void init_queue(Queue *q) { q->front = q->rear = 0; ; }
+  int is_empty(Queue *q) { return q->front == q->rear; }
+  int is_full(Queue *q) { return q->front == (q->rear + 1) % MAX_QUEUE_SIZE; }
+  int size(Queue *q) { return(q->rear - q->front + MAX_QUEUE_SIZE) % MAX_QUEUE_SIZE; }
+
+  void enqueue(Queue *q, Element val)
+  {
+    if (is_full(q))
+      error("  큐 포화 에러");
+    q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
+    q->data[q->rear] = val;
+  }
+  Element dequeue(Queue *q)
+  {
+    if (is_empty(q))
+      error("  큐 공백 에러");
+    q->front = (q->front + 1) % MAX_QUEUE_SIZE;
+    return q->data[q->front];
+  }
+  Element peek(Queue *q)
+  {
+    if (is_empty(q))
+      error("  큐 공백 에러");
+    return q->data[(q->front + 1) % MAX_QUEUE_SIZE];
+  }
+
+  int	nSimulation;		// 시뮬레이션 시간 
+  double probArrival;		// 단위시간에 도착하는 평균 고객 수 
+  int	tMaxService;		// 한 고객에 대한 최대 서비스 시간 
+  int	totalWaitTime;		// 전체 대기 시간 
+  int	nCustomers;		    // 전체 고객의 수 
+  int	nServedCustomers;	// 서비스를 받은 전체 고객 수 
+
+  double rand0to1() { return rand() / (double)RAND_MAX; }
+
+  void insert_customer(Queue *q, int arrivalTime)
+  {
+    Customer a;
+
+    a.id = ++nCustomers;
+    a.tArrival = arrivalTime;
+    a.tService = (int)(tMaxService*rand0to1()) + 1;
+    printf("  고객 %d 방문 (서비스 시간:%d분)\n", a.id, a.tService);
+    enqueue(q, a);
+  }
+  void read_sim_params()
+  {
+    printf("시뮬레이션 할 최대 시간 (예:20) = ");
+    scanf("%d", &nSimulation);
+    printf("단위시간에 도착하는 고객 수 (예:0.5) = ");
+    scanf("%lf", &probArrival);
+    printf("한 고객에 대한 최대 서비스 시간 (예:~6) = ");
+    scanf("%d", &tMaxService);
+    printf("====================================================\n");
+  }
+  void run_simulation()
+  {
+    Queue q;
+    Customer a;
+
+    int clock = 0;
+    int serviceTime = -1;
+
+    init_queue(&q);
+    nCustomers = totalWaitTime = nServedCustomers = 0;
+    while (clock < nSimulation) {
+      clock++;
+      printf("현재시각=%d\n", clock);
+
+      if (rand0to1() > probArrival)
+        insert_customer(&q, clock);
+      if (serviceTime>0) serviceTime--;
+      else {
+        if (is_empty(&q)) {
+          printf("  현재 대기 고객 수       = %d\n", nCustomers - nServedCustomers);
+          continue;
+        }
+        a = dequeue(&q);
+        nServedCustomers++;
+        totalWaitTime += clock - a.tArrival;
+        printf("  고객 %d 서비스 시작 (대기시간:%d분)\n", a.id, clock - a.tArrival);
+        serviceTime = a.tService - 1;
+      }
+      printf("  현재 대기 고객 수       = %d\n", nCustomers - nServedCustomers);
+    }
+  }
+
+  void print_result()
+  {
+    printf("=================================================\n");
+    printf("  서비스 받은 고객수      = %d\n", nServedCustomers);
+    printf("  전체 대기 시간          = %d분\n", totalWaitTime);
+    printf("  서비스고객 평균대기시간 = %-5.2f분\n",
+      (double)totalWaitTime / nServedCustomers);
+    printf("  현재 대기 고객 수       = %d\n", nCustomers - nServedCustomers);
+
+  }
+  #include <time.h>
+  void main()
+  {
+    srand((unsigned int)time(NULL));
+    read_sim_params();
+    run_simulation();
+    print_result();
+  }
+  ```
+
+#### Deque (Double-Ended Queue)
+* Expanded queue capable of insertion and deletion at both ends.
+
+  ![image](https://user-images.githubusercontent.com/64727012/172039685-b590b1f1-74ed-4d6e-bbdd-ee9cf36eb063.png)
+* Example
+  ```c
+  #include<stdio.h>
+
+  typedef char Datatype;
+
+  typedef struct QueueNode {
+      Datatype data;
+      struct QueueNode* next;
+  }Node;
+
+  typedef struct ArrayQueue {
+      int index;
+      Node* rear;
+      Node* front;
+  }Queue;
+
+  Queue* init() {
+      Queue* temp = (Queue*)malloc(sizeof(Queue));
+      temp->front = (Node*)malloc(sizeof(Node));
+      temp->rear = (Node*)malloc(sizeof(Node));
+      temp->index = -1;
+      return temp;
+  }
+  int isEmpty(Queue* pQueue) {
+      if (pQueue->index == -1) {
+          return 1;
+      }
+      else return 0;
+  }
+
+  void qInsertRear(Queue* pQueue, char data) {
+      Node* temp = (Node*)malloc(sizeof(Node));
+      Node* tmp = pQueue->front->next;
+      temp->data = data;
+      temp->next = NULL;
+
+      if (isEmpty(pQueue) == 1) {
+          pQueue->front->next = temp;
+          pQueue->rear->next = temp;
+          temp->next = temp;
+      }
+      else {
+          pQueue->rear->next->next = temp;
+          temp->next = pQueue->front->next;
+          pQueue->rear->next = temp;
+      }
+      pQueue->index++;
+  }
+
+  void qInsertFront(Queue* pQueue, char data) {
+      Node* temp = (Node*)malloc(sizeof(Node));
+
+      temp->data = data;
+      temp->next = NULL;
+
+      if (isEmpty(pQueue) == 1) {
+          pQueue->front->next = temp;
+          pQueue->rear->next = temp;
+          temp->next = temp;
+      }
+      else {
+          temp->next = pQueue->front->next;
+          pQueue->rear->next->next = temp;
+          pQueue->front->next = temp;
+      }
+      pQueue->index++;
+  }
+
+  void qDeleteFront(Queue* pQueue) {
+      if (isEmpty(pQueue) == 1)return 0;
+      else {
+          Node* tempF = (Node*)malloc(sizeof(Node));
+          tempF = pQueue->front->next;
+          pQueue->rear->next->next = pQueue->front->next->next;
+          free(tempF);
+          pQueue->front->next = pQueue->rear->next->next;
+      }
+      pQueue->index--;
+  }
+
+  void qDeleteRear(Queue* pQueue) {
+
+      if (isEmpty(pQueue) == 1)return 0;
+      else {
+          Node* tempR = (Node*)malloc(sizeof(Node));
+          Node* tmp = (Node*)malloc(sizeof(Node));
+          tmp = pQueue->rear->next;
+          tempR = pQueue->front->next;
+
+          for (int i = 0; i < pQueue->index - 1; i++) {
+              tempR = tempR->next;
+          }
+          tempR->next = pQueue->front->next;
+          pQueue->rear->next = tempR;
+          free(tmp);
+      }
+      pQueue->index--;
+  }
+  Datatype getQueueFront(Queue* pQueue) {
+      return pQueue->front->next->data;
+  }
+  Datatype getQueueRear(Queue* pQueue) {
+      return pQueue->rear->next->data;
+  }
+  void Palindrome(char* str) {
+      printf("%s\n", str);
+      int i = 0;
+      Queue* sen = init();
+      while (str[i] != '\0') {
+          if (str[i] == ' ') {
+              i++;
+              continue;
+          }
+          else {
+              qInsertRear(sen, str[i]);
+              i++;
+          }
+      }
+
+      int count = sen->index;
+
+      if ((sen->index + 1) % 2 == 1) {
+          for (int i = 0; i < count / 2; i++) {
+              if (getQueueFront(sen) == getQueueRear(sen)) {
+                  qDeleteFront(sen);
+                  qDeleteRear(sen);
+
+              }
+              else {
+                  printf("회문이아닙니다.\n\n");
+                  return 0;
+              }
+          }
+          printf("회문입니다.\n\n");
+          return 0;
+      }
+      else {
+          for (int i = 0; i < (count+1) / 2; i++) {
+              if (getQueueFront(sen) == getQueueRear(sen)) {
+                  qDeleteFront(sen);
+                  qDeleteRear(sen);
+              }
+              else {
+                  printf("회문이아닙니다.\n\n");
+                  return 0;
+              }
+          }
+          printf("회문입니다.\n\n");
+          return 0;
+      }
+  }
+
+  int main() {
+
+      char str0[] = "madondam";
+      char str1[] = "radar";
+      char str2[] = "rotavator";
+      char str3[] = "madam";
+      char str4[] = "was it an cat i saw";
+      char str5[] = "a man a plan a canal panama";
+      char str6[] = "race car";
+      char str7[] = "was it a cat i saw";
+      char str8[] = "nurses run";
+      char str9[] = "a man a plan an canal panama";
+
+      // Palindrome checker
+      Palindrome(str0);
+      Palindrome(str1);
+      Palindrome(str2);
+      Palindrome(str3);
+      Palindrome(str4);
+      Palindrome(str5);
+      Palindrome(str6);
+      Palindrome(str7);
+      Palindrome(str8);
+      Palindrome(str9);
+
+      return 0;
+  }
+  ```
 
 ## Non-Linear Data Structure
 
