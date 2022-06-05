@@ -1293,9 +1293,97 @@
   
   ```
 
+### Priority queue and Heap
+* <strong>Priority queue => queue saving data that have priority</strong>
+  * Not FIFO, but data that have high priority are first out
+  * Important calculation => Insert/Delete
+  * Unordered array => Insertion = O(1) / Deletion = O(n)
+  * Unordered linked list => Insertion = O(1) / Deletion = O(n)
+  * Sorted array => Insertion = O(n) / Deletion = O(1)
+  * Sorted linked list => Insertion = O(n) / Deletion = O(1)
+  * <strong>Heap => Insertion(upHeap) = O(log n) / Deletion(downHeap) = O(log n)</strong>
 
+* <strong>Heap
+  * Complete Binary Tree
+  * Max heap => Complete Binary Tree that key value of parent node is greater than or equal to child node
+    * Get max-value => O(1)
+  * Min heap => Complete Binary Tree that key value of parent node is less than or equal to child node
+    * Get min-value => O(1)
+  * Example : Huffman code</strong>
+    ```c
+    
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <memory.h>
 
-### Priority queue and heap
+    typedef struct treeNode {	// 연결 자료구조로 구성하기 위해 트리의 노드 정의
+      char data;
+      struct treeNode* left;  // 왼쪽 서브 트리에 대한 링크 필드
+      struct treeNode* right; // 오른쪽 서브 트리에 대한 링크 필드
+    } treeNode;
+
+    // data를 루트 노드로 하여 왼쪽 서브 트리와 오른쪽 서브 트리를 연결하는 연산
+    treeNode* makeRootNode(char data, treeNode* leftNode, treeNode* rightNode) {
+      treeNode* root = (treeNode*)malloc(sizeof(treeNode));
+      root->data = data;
+      root->left = leftNode;
+      root->right = rightNode;
+      return root;
+    }
+    void decryption(treeNode* root, int zipData[]) {
+      int i = 0;
+      treeNode* temp = (treeNode*)malloc(sizeof(treeNode));
+      temp = root;
+
+      printf("복호화 : ");
+
+      while (1) {
+        if (zipData[i] == 0) {
+          if (temp->left == NULL) {
+            printf("%c", temp->data);
+            temp = root;
+            continue;
+          }
+          temp = temp->left;
+        }
+        else {
+          if (temp->right == NULL) {
+            printf("%c", temp->data);
+            temp = root;
+            continue;
+          }
+          temp = temp->right;
+        }
+        i++;
+        if (zipData[i] != 1 && zipData[i] != 0) {
+          printf("%c", temp->data);
+          break;
+        }
+      }
+    }
+
+    void main() {
+      // 허프만 코드 이진 트리 만들기
+      treeNode* n11 = makeRootNode('u', NULL, NULL);
+      treeNode* n10 = makeRootNode('i', NULL, NULL);
+      treeNode* n9 = makeRootNode('h', NULL, NULL);
+      treeNode* n8 = makeRootNode('5', n10, n11);
+      treeNode* n7 = makeRootNode('f', NULL, NULL);
+      treeNode* n6 = makeRootNode('s', NULL, NULL);
+      treeNode* n5 = makeRootNode('4', n8, n9);
+      treeNode* n4 = makeRootNode('n', NULL, NULL);
+      treeNode* n3 = makeRootNode('3', n6, n7);
+      treeNode* n2 = makeRootNode('2', n4, n5);
+      treeNode* n1 = makeRootNode('1', n2, n3);
+
+      // 허프만 zip data
+      int huffman_zip[] = { 0,1,1,0,1,0,1,1,1,1,0,0,1,0,0,1,0,1,1,0,1,0,1,0,0 };
+      // 복호화
+      decryption(n1, huffman_zip);
+    }
+    
+    ```
+
 
 ### graph
 
