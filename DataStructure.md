@@ -820,8 +820,8 @@
 
 ### Queue
 * <strong>A first-In element is deleted first
-* First-In-First-out (FIFO)</strong>
-  * Insert/Delete => O(1)
+* First-In-First-out (FIFO)
+  * Insert/Delete => O(1)</strong>
 
   ![image](https://user-images.githubusercontent.com/64727012/172039374-76223ce2-b179-4d19-b838-0418f9d8c6d5.png)
 * Example
