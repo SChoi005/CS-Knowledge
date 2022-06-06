@@ -2671,7 +2671,7 @@
 
   }
   ```
-#### Radix Sort
+### Radix Sort
 * O(d(n+r))
 * Code
   ```cpp
