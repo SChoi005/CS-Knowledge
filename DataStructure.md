@@ -1655,9 +1655,419 @@
   * Adjacency Matrix => O(n^2) / Adjacency List => O(n+m) : n = vertex, m = edge
   * Implementation => Stack or Recursive
 
+  ![image](https://user-images.githubusercontent.com/64727012/172079290-ca980998-c98d-48bc-b0ad-2ae3683ae253.png)
+
+  * Example
+    ```c
+    #include <memory.h>
+    #include <stdlib.h>
+    #define MAX_VERTEX 10
+    #define FALSE 0
+    #define TRUE 1
+
+    // 그래프에 대한 인접 리스트의 노드 구조 정의
+    typedef struct graphNode {
+      int vertex;
+      struct graphNode* link;
+    } graphNode;
+
+    typedef struct graphType {
+      int n;								// 정점 개수
+      graphNode* adjList_H[MAX_VERTEX];	// 정점에 대한 인접 리스트의 헤드 노드 배열
+      int visited[MAX_VERTEX];			// 정점에 대한 방문 표시를 위한 배열
+    } graphType;
+
+    // << 스택 (5장에서 설명한 연결 리스트를 이용한 스택 연산 수행:[예제 5-2]의 05~43행과 동일)
+    typedef int element;
+
+    typedef struct stackNode {
+      int data;
+      struct stackNode *link;
+    } stackNode;
+
+    stackNode* top;
+
+    // 스택이 공백인지 확인하는 연산
+    int isEmpty() {
+      if (top == NULL) return 1;
+      else return 0;
+    }
+
+    void push(int item) {
+      stackNode* temp = (stackNode *)malloc(sizeof(stackNode));
+      temp->data = item;
+      temp->link = top;
+      top = temp;
+    }
+
+    int pop() {
+      int item;
+      stackNode* temp = top;
+
+      if (isEmpty()) {
+        printf("\n\n Stack is empty !\n");
+        return 0;
+      }
+      else {
+        item = temp->data;
+        top = temp->link;
+        free(temp);
+        return item;
+      }
+    } // 스택 >>
+
+    // 깊이 우선 탐색을 위해 초기 공백 그래프를 생성하는 연산
+    void createGraph(graphType* g) {
+      int v;
+      g->n = 0;							// 그래프의 정점 개수를 0으로 초기화
+      for (v = 0; v<MAX_VERTEX; v++) {
+        g->visited[v] = FALSE;			// 그래프의 정점에 대한 배열 visited를 FALSE로 초기화
+        g->adjList_H[v] = NULL;			// 인접 리스트에 대한 헤드 노드 배열을 NULL로 초기화
+      }
+    }
+
+    // 그래프 g에 정점 v를 삽입하는 연산 : [예제 8-2]의 26~32행과 동일
+    void insertVertex(graphType* g, int v) {
+      if (((g->n) + 1)>MAX_VERTEX) {
+        printf("\n 그래프 정점의 개수를 초과하였습니다!");
+        return;
+      }
+      g->n++;
+    }
+
+    // 그래프 g에 간선 (u, v)를 삽입하는 연산 : [예제 8-2]의 35~47행과 동일
+    void insertEdge(graphType* g, int u, int v) {
+      graphNode* node;
+      if (u >= g->n || v >= g->n) {
+        printf("\n 그래프에 없는 정점입니다!");
+        return;
+      }
+      node = (graphNode *)malloc(sizeof(graphNode));
+      node->vertex = v;
+      node->link = g->adjList_H[u];
+      g->adjList_H[u] = node;
+    }
+
+    // 그래프 g의 각 정점에 대한 인접 리스트를 출력하는 연산 : [예제 8-2]의 50~61행과 동일
+    void print_adjList(graphType* g) {
+      int i;
+      graphNode* p;
+      for (i = 0; i<g->n; i++) {
+        printf("\n\t\t정점%c의 인접 리스트", i + 65);
+        p = g->adjList_H[i];
+        while (p) {
+          printf(" -> %c", p->vertex + 65);
+          p = p->link;
+        }
+      }
+    }
+
+    // 그래프 g에서 정점 v에 대한 깊이 우선 탐색 연산
+    void DFS_adjList(graphType* g, int v) {
+      graphNode* w;
+      top = NULL;					// 스택의 top 설정
+      push(v);					// 깊이 우선 탐색을 시작하는 정점 v를 스택에 push
+      g->visited[v] = TRUE;		// 정점 v를 방문했으므로 해당 배열 값을 TRUE로 설정 
+      printf(" %c", v + 65);
+
+      // 스택이 공백이 아닌 동안 깊이 우선 탐색 반복
+      while (!isEmpty()) {
+        w = g->adjList_H[v];
+        // 인접 정점이 있는 동안 수행
+        while (w) {
+          // 현재 정점 w를 방문하지 않은 경우 
+          if (!g->visited[w->vertex]) {
+            push(w->vertex);					// 현재 정점 W를 스택에 push
+            g->visited[w->vertex] = TRUE;	// 정점 w에 대한 배열 값을 TRUE로 설정
+            printf(" %c", w->vertex + 65);	// 정점 0~6을 A~G로 바꾸어서 출력
+            v = w->vertex;
+            w = g->adjList_H[v];
+          }
+          // 현재 정점 w가 이미 방문된 경우
+          else w = w->link;
+        }
+        v = pop();// 현재 정점에서 순회를 진행할 인접 정점이 더 없는 경우에 스택 pop!
+      } // 스택이 공백이면 깊이 우선 탐색 종료
+    }
+
+    void main() {
+      int i;
+      graphType *G7;
+      G7 = (graphType *)malloc(sizeof(graphType));
+      createGraph(G7);
+
+      // 그래프 G7 구성
+      for (i = 0; i<7; i++)
+        insertVertex(G7, i);
+      insertEdge(G7, 0, 2);
+      insertEdge(G7, 0, 1);
+      insertEdge(G7, 1, 4);
+      insertEdge(G7, 1, 3);
+      insertEdge(G7, 1, 0);
+      insertEdge(G7, 2, 4);
+      insertEdge(G7, 2, 0);
+      insertEdge(G7, 3, 6);
+      insertEdge(G7, 3, 1);
+      insertEdge(G7, 4, 6);
+      insertEdge(G7, 4, 2);
+      insertEdge(G7, 4, 1);
+      insertEdge(G7, 5, 6);
+      insertEdge(G7, 6, 5);
+      insertEdge(G7, 6, 4);
+      insertEdge(G7, 6, 3);
+      printf("\n G9의 인접 리스트 ");
+      print_adjList(G7);
+
+      printf("\n\n///////////////\n\n깊이 우선 탐색 >> ");
+      DFS_adjList(G7, 0);	// 0번 정점인 정점 A에서 깊이 우선 탐색 시작
+
+      getchar();
+    }
+    ```
+
+
 <strong>2. BFS (Breadth First Search)</strong>
   * Adjacency Matrix => O(n^2) / Adjacency List => O(n+m) : n = vertex, m = edge
   * Implementation => Queue
+  
+  ![image](https://user-images.githubusercontent.com/64727012/172079294-d1b412e2-8a49-419a-956b-73df69c4bb8e.png)
+  * Example
+    ```c
+    #include<stdio.h>
+    #define MAX_VERTEX 30
+
+    typedef char Datatype;
+
+    typedef struct QueueNode {
+        Datatype data;
+        struct QueueNode* next;
+    }Node;
+
+    typedef struct ArrayQueue {
+        int index;
+        Node* rear;
+        Node* front;
+    }Queue;
+
+    Queue* init() {
+        Queue* temp = (Queue*)malloc(sizeof(Queue));
+        temp->front = (Node*)malloc(sizeof(Node));
+        temp->rear = (Node*)malloc(sizeof(Node));
+        temp->index = -1;
+        return temp;
+    }
+    int isEmpty(Queue* pQueue) {
+        if (pQueue->index == -1) {
+            return 1;
+        }
+        else return 0;
+    }
+
+    void qInsertRear(Queue* pQueue, char data) {
+        Node* temp = (Node*)malloc(sizeof(Node));
+        Node* tmp = pQueue->front->next;
+        temp->data = data;
+        temp->next = NULL;
+
+        if (isEmpty(pQueue) == 1) {
+            pQueue->front->next = temp;
+            pQueue->rear->next = temp;
+            temp->next = temp;
+        }
+        else {
+            pQueue->rear->next->next = temp;
+            temp->next = pQueue->front->next;
+            pQueue->rear->next = temp;
+        }
+        pQueue->index++;
+    }
+
+    void qInsertFront(Queue* pQueue, char data) {
+        Node* temp = (Node*)malloc(sizeof(Node));
+
+        temp->data = data;
+        temp->next = NULL;
+
+        if (isEmpty(pQueue) == 1) {
+            pQueue->front->next = temp;
+            pQueue->rear->next = temp;
+            temp->next = temp;
+        }
+        else {
+            temp->next = pQueue->front->next;
+            pQueue->rear->next->next = temp;
+            pQueue->front->next = temp;
+        }
+        pQueue->index++;
+    }
+
+    void qDeleteFront(Queue* pQueue) {
+        if (isEmpty(pQueue) == 1)return 0;
+        else {
+            Node* tempF = (Node*)malloc(sizeof(Node));
+            tempF = pQueue->front->next;
+            pQueue->rear->next->next = pQueue->front->next->next;
+            free(tempF);
+            pQueue->front->next = pQueue->rear->next->next;
+        }
+        pQueue->index--;
+    }
+
+    void qDeleteRear(Queue* pQueue) {
+
+        if (isEmpty(pQueue) == 1)return 0;
+        else {
+            Node* tempR = (Node*)malloc(sizeof(Node));
+            Node* tmp = (Node*)malloc(sizeof(Node));
+            tmp = pQueue->rear->next;
+            tempR = pQueue->front->next;
+
+            for (int i = 0; i < pQueue->index - 1; i++) {
+                tempR = tempR->next;
+            }
+            tempR->next = pQueue->front->next;
+            pQueue->rear->next = tempR;
+            free(tmp);
+        }
+        pQueue->index--;
+    }
+    Datatype getQueueFront(Queue* pQueue) {
+        return pQueue->front->next->data;
+    }
+    Datatype getQueueRear(Queue* pQueue) {
+        return pQueue->rear->next->data;
+    }
+
+    typedef struct graphNode {
+      int vertex;
+      struct graphNode* link;
+    }graphNode;
+
+    typedef struct graphType {
+      int n;
+      graphNode* adjList_H[MAX_VERTEX];
+
+    }graphType;
+
+    void createGraph(graphType* g) {
+      g->n = 0;
+      for (int v = 0; v < MAX_VERTEX; v++)
+        g->adjList_H[v] = NULL;
+    }
+
+    void insertVertex(graphType* g, int u) {
+      if (((g->n) + 1) > MAX_VERTEX) {
+        printf("\n 그래프 정점의 개수를 초과하였습니다.");
+        return;
+      }
+      g->n++;
+    }
+
+    void insertEdge(graphType* g, int u, int v) {//u,v는 정점
+      graphNode* node;
+
+      if (u >= g->n || v >= g->n) {
+        printf("\n 그래프에 없는 정점입니다!");
+        return;
+      }
+      node = (graphNode*)malloc(sizeof(graphNode));
+      node->vertex = v;
+      node->link = g->adjList_H[u];
+      g->adjList_H[u] = node; 
+    }
+
+    void print_adjList(graphType* g) {
+      graphNode* p;
+      for (int i = 0; i < g->n; i++) {
+        printf("\n\t\t정점 %c의 인접 리스트", i + 65);
+        p = g->adjList_H[i];
+        while (p) {
+          printf(" -> %c", p->vertex + 65);
+          p = p->link;
+        }
+      }
+    }
+
+    void BFS_adjList(graphType* g, int v) {
+
+        int visited[MAX_VERTEX];
+        int k = 0;
+
+        for (int i = 0; i <= g->n; i++) {
+            visited[i] = 0;
+        }
+        Queue* q = init();
+        visited[v] = 1;
+        printf("%c ", v + 65);
+        graphNode* p;
+        p = g->adjList_H[v];
+
+        while (1) {
+            while (1) {
+                if (visited[p->vertex] == 0) {
+                    qInsertRear(q, p->vertex + 65);
+                    visited[p->vertex] = 1;
+                }
+                if (p->link == NULL)
+                    break;
+                p = p->link;
+            }
+            p = g->adjList_H[v++];
+            if (v > g->n) {
+                p = g->adjList_H[0];
+                v = 0;
+            }
+            k++;
+            if (k > g->n)
+                break;
+        }
+        int count = q->index;
+        for (int i = 0; i <= count; i++) {
+            printf("%c ", getQueueFront(q));
+            qDeleteFront(q);
+        }
+    }
+
+    void main() {
+      int i;
+      graphType* G9;
+      G9 = (graphType*)malloc(sizeof(graphType));
+      createGraph(G9);
+
+      // 그래프 G9 구성
+      for (i = 0; i < 7; i++)
+        insertVertex(G9, i);
+      insertEdge(G9, 0, 2);
+      insertEdge(G9, 0, 1);
+
+      insertEdge(G9, 1, 4);
+      insertEdge(G9, 1, 3);
+      insertEdge(G9, 1, 0);
+
+      insertEdge(G9, 2, 4);
+      insertEdge(G9, 2, 0);
+
+      insertEdge(G9, 3, 6);
+      insertEdge(G9, 3, 1);
+
+      insertEdge(G9, 4, 6);
+      insertEdge(G9, 4, 2);
+      insertEdge(G9, 4, 1);
+
+      insertEdge(G9, 5, 6);
+
+      insertEdge(G9, 6, 5);
+      insertEdge(G9, 6, 4);
+      insertEdge(G9, 6, 3);
+      printf("\n G9의 인접 리스트 ");
+      print_adjList(G9);
+
+      printf("\n\n///////////////\n\n너비 우선 탐색 >> ");
+      BFS_adjList(G9, 0);      // 0번 정점인 정점 A에서 너비 우선 탐색 시작
+
+      getchar();
+    }
+    ```
 
 ## Sort
 
