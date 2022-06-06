@@ -3158,5 +3158,225 @@
   }
   ```
 
-
 ## Hashing
+* Searching way to calculate position that key exists by using arithmetic operation
+* Calculate address about key value by hash function, and move to the corresponding address in the hash table  
+* Hash function => function returning the element's position about the key value
+* Collision => For two different key k1,k2, if Hashtable(k1) = Hashtable(k2)
+
+### Collision Solution
+<strong>1. Open Addressing</strong>
+  * Save the value with collision at other position of hash table
+  * Linear probing, Quadratic probing, Double hashing, Random probing
+  * Insertion, Deletion, Searching => O(1)~O(n)
+  * Example : Linear Probing
+    ```c
+    
+    #include <stdio.h>
+    #include <string.h>
+    #include <stdlib.h>
+
+    #define KEY_SIZE	10	// 탐색키의 최대길이  
+    #define TABLE_SIZE	13	// 해싱 테이블의 크기=소수 
+    #define DEBUG
+
+    typedef struct
+    {
+      char key[KEY_SIZE];
+      // 다른 필요한 필드들 
+    } element;
+
+    element hash_table[TABLE_SIZE];		// 해싱 테이블 
+    void init_table(element ht[])
+    {
+      int i;
+      for (i = 0; i<TABLE_SIZE; i++) {
+        ht[i].key[0] = NULL;
+      }
+    }
+    // 문자로 된 키를 숫자로 변환
+    int transform1(char *key)
+    {
+      int number = 0;
+      while (*key)
+        number = number + *key++;
+
+    #ifdef DEBUG
+      printf("transform : %d \n", number);
+    #endif
+      return number;
+    }
+    // 제산 함수를 사용한 해싱 함수
+    int hash_function(char *key)
+    {
+      // 키를 자연수로 변환한 다음 테이블의 크기로 나누어 나머지를 반환
+      return transform1(key) % TABLE_SIZE;
+    }
+    #define empty(item) (strlen(item.key)==0)
+    #define equal(item1, item2) (!strcmp(item1.key,item2.key))
+
+    // 선형 조사법을 이용하여 테이블에 키를 삽입하고, 
+    // 테이블이 가득 찬 경우는 종료     
+    void hash_lp_add(element item, element ht[])
+    {
+      int i, hash_value;
+      hash_value = i = hash_function(item.key);
+    #ifdef DEBUG
+      printf("hash_address=%d\n", i);
+    #endif
+      while (!empty(ht[i])) {
+        if (equal(item, ht[i])) {
+          fprintf(stderr, "탐색키가 중복되었습니다\n");
+          exit(1);
+        }
+        i = (i + 1) % TABLE_SIZE;
+        if (i == hash_value) {
+          fprintf(stderr, "테이블이 가득찼습니다\n");
+          exit(1);
+        }
+      }
+      ht[i] = item;
+    }
+
+    // 선형조사법을 이용하여 테이블에 저장된 키를 탐색
+    void hash_lp_search(element item, element ht[])
+    {
+      int i, hash_value;
+      hash_value = i = hash_function(item.key);
+      while (!empty(ht[i]))
+      {
+        if (equal(item, ht[i])) {
+          fprintf(stderr, "탐색 %s: 위치 = %d\n", item.key, i);
+          return;
+        }
+        i = (i + 1) % TABLE_SIZE;
+        if (i == hash_value) {
+          fprintf(stderr, "찾는 값이 테이블에 없음\n");
+          return;
+        }
+      }
+      fprintf(stderr, "찾는 값이 테이블에 없음\n");
+    }
+    // 해싱 테이블의 내용을 출력
+    void hash_lp_print(element ht[])
+    {
+      int i;
+      printf("\n===============================\n");
+      for (i = 0; i<TABLE_SIZE; i++)
+        printf("[%d]	%s\n", i, ht[i].key);
+      printf("===============================\n\n");
+    }
+
+    // 해싱 테이블을 사용한 예제 
+    int main(void)
+    {
+      char *s[7] = { "do", "for", "if", "case", "else", "return", "function" };
+      element e;
+
+      for (int i = 0; i < 7; i++) {
+        strcpy(e.key, s[i]);
+        hash_lp_add(e, hash_table);
+        hash_lp_print(hash_table);
+      }
+      for (int i = 0; i < 7; i++) {
+        strcpy(e.key, s[i]);
+        hash_lp_search(e, hash_table);
+      }
+      return 0;
+    }
+    ```
+
+<strong>2. Chaining</strong>
+  * Assign linked list capable of insertion/deletion to each bucket
+  * Insertion => If save at linked list's head, O(1) / If save at linked list's tail, O(α)
+  * Deeletion, Searching => O(α)~O(n)
+  * Example
+    ```c
+    #include <stdio.h>
+    #include <string.h>
+    #include <stdlib.h>
+    // 해싱 테이블의 내용을 출력
+    #define TABLE_SIZE	7	// 해싱 테이블의 크기=소수 
+
+    typedef struct {
+      int key;
+    } element;
+
+    struct list
+    {
+      element item;
+      struct list* link;
+    };
+    struct list* hash_table[TABLE_SIZE];
+
+    // 제산 함수를 사용한 해싱 함수
+    int hash_function(int key)
+    {
+      return key % TABLE_SIZE;
+    }
+
+    struct list** hashAdd(struct list** ht, struct list* node) {
+      int address = hash_function(node->item.key);
+      if (ht[address] == NULL) {
+        ht[address] = node;
+        return ht[address];
+      }
+      else {
+        struct list* temp = ht[address];
+        while (1) {
+          if (ht[address]->link == NULL) {
+            ht[address]->link = node;
+            break;
+          }
+          ht[address] = ht[address]->link;
+        }
+        ht[address] = temp;
+        return ht[address];
+      }
+    }
+    void searchHash(int key) {
+      int address = hash_function(key);
+      struct list* temp = hash_table[address];
+      while (1) {
+        if (temp == NULL) {
+          printf("탐색 %d 실패\n", key);
+          break;
+        }
+        if (temp->item.key == key) {
+          printf("탐색 %d 성공\n", key);
+          break;
+        }
+        temp = temp->link;
+      }
+    }
+
+    // 해싱 테이블을 사용한 예제 
+    int main(void)
+    {
+      int data[9] = { 5, 8, 2, 13, 4, 6, 9, 11, 7};
+
+      for (int i = 0; i < 9; i++) {
+        struct list* node = (struct list*)malloc(sizeof(struct list));
+        node->link = NULL;
+        node->item.key = data[i];
+        hash_table[hash_function(data[i])] = hashAdd(hash_table ,node);
+      }
+      printf("=======================================\n");
+      for (int i = 0; i < TABLE_SIZE; i++) {
+        printf("[%d]->", i);
+        struct list* temp = hash_table[i];
+        while (temp != NULL) {
+          printf("%d->", temp->item.key);
+          temp = temp->link;
+        }
+        printf("\n");
+      }
+      printf("=======================================\n");
+      for (int i = 0; i < 9; i++) {
+        searchHash(data[i]);
+      }
+    }
+    
+    ```
+
+
