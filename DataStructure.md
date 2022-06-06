@@ -1650,6 +1650,14 @@
     
     ```
 
+#### Graph Traversal, Search
+<strong>1. DFS (Depth First Search)</strong>
+  * Adjacency Matrix => O(n^2) / Adjacency List => O(n+m) : n = vertex, m = edge
+  * Implementation => Stack or Recursive
+
+<strong>2. BFS (Breadth First Search)</strong>
+  * Adjacency Matrix => O(n^2) / Adjacency List => O(n+m) : n = vertex, m = edge
+  * Implementation => Queue
 
 ## Sort
 
