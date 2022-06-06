@@ -1384,7 +1384,7 @@
     
     ```
 
-### graph
+### Graph
 * <strong>Data structure representing n:n relation between linked elements</strong>
   * e.g. subway, bus route, etc.  
 
