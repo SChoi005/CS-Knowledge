@@ -2238,7 +2238,6 @@
   * O(n^2) : n = vertex
   
   ![image](https://user-images.githubusercontent.com/64727012/172084038-1e466617-f4e5-4a58-ac7c-d53f8ed8de10.png)
-
   * Example
     ```c
     #include <stdio.h>
@@ -2319,13 +2318,16 @@
 
 ### Shortest Path Algorithm
 <strong>1. Dijkstra Algorithm</strong>
-  * Algorithm finding shortest path from Source s to all other vertices<strong> in graph that all edge's weight are positive </strong> 
+  * Algorithm finding shortest path from Source s to all other vertices<strong> in graph that all edge's weight are positive </strong>
+  * Both undirect and direct graph can be applied 
   * V=> Set of vertices
   * S=> Set of vertices that found the current shortest path from source s
   * D[v]=> distance of the shortest path from s to vertex V through the vertices belonging to S
     * <strong>D[w] = min {D[w], D[u] + weight(u, w)}
   * Adjacency Matrix => O(n^2)
   * Adjacency List => (D[] => Array)-O(n^2), (D[] => minheap)-O(m log n) : m = edge, n= vertex</strong> 
+  
+  ![image](https://user-images.githubusercontent.com/64727012/172095146-a04f15f3-74aa-44b0-a674-153ef746b365.png)
   * Example
     ```c
     #include <stdio.h>
@@ -2424,6 +2426,78 @@
 
 
 <strong>2. Floyd Algorithm</strong>
+  * <strong>Calculate all Shortest path between all vertices
+  * O(n^3) : n = vertex</strong>
+  * Example
+    ```c
+    #include <stdio.h>
+    #include <limits.h>
+
+    #define MAX_VERTICES 5						// 그래프의 정점 개수
+    #define INF  10000
+
+    int weight[MAX_VERTICES][MAX_VERTICES] = {	// 그래프 G11의 가중치 인접행렬
+      { 0,10,5,INF,INF },
+      { INF,0,2,1,INF },
+      { INF, 3,0,9,2 },
+      { INF,INF,INF,0,4 },
+      { 7,INF,INF,6,0 },
+    };
+
+    int A[MAX_VERTICES][MAX_VERTICES];			// k-최단 경로 배열
+
+    // 최단 경로를 구하는 과정을 출력하는 연산
+    void printStep(int step) {					
+      int i, j;
+      printf("\n A%d : ", step);
+      for (i = 0; i < MAX_VERTICES; i++) {
+        printf("\t");
+        for (j = 0; j < MAX_VERTICES; j++) {
+          if (A[i][j] == 10000)
+            printf("%4c", '*');
+          else printf("%4d", A[i][j]);
+        }
+        printf("\n\n");
+      }
+    }
+
+    void Floyd_shortestPath(int n) {
+      int v, w, k, step = -1;
+
+      for (v = 0; v < n; v++)		// 초기화
+        for (w = 0; w < n; w++)
+          A[v][w] = weight[v][w];
+
+      printStep(step);
+
+      for (k = 0; k < n; k++) {
+        for (v = 0; v < n; v++)
+          for (w = 0; w < n; w++)
+            if (A[v][k] + A[k][w] < A[v][w])
+              A[v][w] = A[v][k] + A[k][w];
+        printStep(++step);
+      }
+    }
+
+    void main(void) {
+      int i, j;
+      printf("\n ********** 가중치 인접 행렬 **********\n\n");
+      for (i = 0; i < MAX_VERTICES; i++) {
+        for (j = 0; j < MAX_VERTICES; j++) {
+          if (weight[i][j] == 10000)
+            printf("%4c", '*');
+          else printf("%4d", weight[i][j]);
+        }
+        printf("\n\n");
+      }
+
+      printf("\n ********* 플로이드 최단 경로 구하기 *********\n\n");
+      Floyd_shortestPath(MAX_VERTICES);
+
+      getchar();
+    }
+    ```
+  
 
 ## Sort
 
