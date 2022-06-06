@@ -1402,6 +1402,10 @@
 
 #### Graph Implementation
 <strong>1. Adjacency Matrix</strong>
+  
+  ![image](https://user-images.githubusercontent.com/64727012/172078442-ea6a4ace-2c39-42b6-b639-68e38b40d6e7.png)
+
+
   * Example
     ```c
     #include <stdio.h>
@@ -1516,6 +1520,9 @@
     ```
 
 <strong>2. Adjacency List</strong>
+  
+  ![image](https://user-images.githubusercontent.com/64727012/172078707-b1bc984e-2eb8-42c1-b56e-1f694d3c939e.png)
+
   * Example
     ```c
     #include <stdio.h>
