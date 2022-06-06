@@ -2319,9 +2319,13 @@
 
 ### Shortest Path Algorithm
 <strong>1. Dijkstra Algorithm</strong>
-  * Algorithm finding shortest path from Source s to all other vertices in graph that all edge's weight are positive 
+  * Algorithm finding shortest path from Source s to all other vertices<strong> in graph that all edge's weight are positive </strong> 
+  * V=> Set of vertices
+  * S=> Set of vertices that found the current shortest path from source s
+  * D[v]=> distance of the shortest path from s to vertex V through the vertices belonging to S
+    * <strong>D[w] = min {D[w], D[u] + weight(u, w)}
   * Adjacency Matrix => O(n^2)
-  * Adjacency List => (D[] => Array)-O(n^2), (D[] => minheap)-O(m log n) : m = edge, n= vertex
+  * Adjacency List => (D[] => Array)-O(n^2), (D[] => minheap)-O(m log n) : m = edge, n= vertex</strong> 
   * Example
     ```c
     #include <stdio.h>
