@@ -14,12 +14,16 @@
 ### Evaluation criteria for algorithms
 1. Correctness
 2. Amout of work done
-  * Execute time of Algorithm
+   * Executed time of Algorithm
 3. Memory space used 
-  * If algorithm is simple and clear, it is easy to write program or revise
-5. Simplicity, Clarity
-6. Optimality
+4. Simplicity, Clarity
+   * If algorithm is simple and clear, it is easy to write program or revise
+5. Optimality
+   * There is no better alogrithm than this for the problem
 
+### Describing Language for Algorithm 
+* <strong>pseudo-language</strong> => Language for describing algorithm
+* <strong>pseudo-code</strong> => Code written by pseudo-language
 
 
 ## Sorting
