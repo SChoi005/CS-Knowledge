@@ -66,6 +66,94 @@
 
 ## Sorting
 
+#### Sorting Algorithm Classification
+* <strong>Stable sorting algorithm</strong>
+  * Among data to sort, relative position of same two data is maintained after sorting 
+   
+   ![image](https://user-images.githubusercontent.com/64727012/172866695-a8b04e78-e7b8-4314-b855-a0c33d93bc71.png)
+
+* <strong>In-place sorting algorithm</strong>
+  * Except for memory space to save inputs for sorting, additional memory space is O(1)
+
+### Simple Sorting Algorithms
+
+#### Selection Sort
+* Code
+  ```cpp
+  void selectionSort(int arr[], int n){
+      for(int i=n-1; i>=0 ; i--){
+          int max = 0;
+          for(int j=0; j<=i; j++){
+              if(arr[max] < arr[j])
+                  max = j;
+          }
+          int temp = arr[max];
+          arr[max] = arr[i];
+          arr[i] = temp;
+      }
+  }
+  ```
+  
+
+#### Bubble sort
+* Code
+  ```cpp
+  void bubbleSort(int arr[], int n){
+      for(int i=n-1; i>0; i--){
+          for(int j=0; j<i; j++){
+              if(arr[j] > arr[j+1]){
+                  int temp = arr[j];
+                  arr[j] = arr[j+1];
+                  arr[j+1] = temp;
+              }
+          }
+      }
+  }
+
+  void improvedBubbleSort(int arr[], int n){
+      int sorted = 1;
+      for(int i=n-1; i>0; i--){
+          for(int j=0; j<i; j++){
+              if(arr[j] > arr[j+1]){
+                  int temp = arr[j];
+                  arr[j] = arr[j+1];
+                  arr[j+1] = temp;
+                  sorted = 0;
+              }
+          }
+          if(sorted == 1)
+              break;
+      }
+  }
+  ```
+
+
+#### Insertion Sort
+* Code
+  ```cpp
+  void insertSort(int arr[], int n){
+      for(int i=1; i<n; i++){
+          int temp = arr[i];
+          int index = 0;
+          for(int j=i-1; j>=0; j--){
+              if(arr[j] > temp){
+                  arr[j+1] = arr[j];
+                 }
+              else{
+                  index = j+1;
+                  break;
+              }
+          }
+          arr[index] = temp;
+      }
+  }
+
+  ```
+
+
+### Sorting Algorithm by Divide and Conquer
+
+
 ## Dynamic Programming
 
 ## Greedy Method
