@@ -24,7 +24,45 @@
 ### Describing Language for Algorithm 
 * <strong>pseudo-language</strong> => Language for describing algorithm
 * <strong>pseudo-code</strong> => Code written by pseudo-language
+* Example
+  ```bash
+  i <- -1;  flag <-  true
 
+  while (flag)
+            i <- i+1
+            m <- a[i]
+            flag <- false
+            for j <-  0 to n-1
+               if m > a[j] then flag <-  true
+
+  3. output m;
+
+  ```
+
+### Analysis algorithm execution time
+
+#### Purpose
+* Calculate how long program excute
+* Calculate maximum input size that program finish within proper time
+* Capable of comparing several algorithms solving the problem
+* Select a good algorithm
+
+#### Analysis algorithm execution time according to input
+* <strong>It is very difficult to analyze average-case running time</strong>
+* <strong>Usually, analyze worst-case running time</strong>
+
+#### Big-O
+* Leave the highest degree, the others are ignored
+* Ignore constant multiplied at the highest degree
+ * Ex)  n log n + 5n = O(n log n)
+* <strong>Frequent Big-O Symbol
+  * constant O(1)
+  * logarithmic  O(log n)
+  * linear O(n)
+  * O(n log n)
+  * quadratic  O(n^2), cubic O(n^3)
+  * polynomial O(n^k), k >= 1
+  * Exponential O(a^n), a > 1</strong>
 
 ## Sorting
 
