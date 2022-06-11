@@ -223,6 +223,11 @@
   * T(n) = (C2+C1)n – C2 => O(n)
 
 #### Merge Sort
+* Description
+  * Divide list of n size into two part of n/2 size
+  * Sort recursively two parts of n/2 size
+  * Merge two sorted parts into one by using merge function
+  
 * Code
   ```cpp
   int temp[10001];
@@ -271,9 +276,25 @@
   }
 
   ```
+* O(n log n)
+  * T(1) = C2
+  * When n is more than 1, T(n) = 2(n/2) + C2 * n
+  * T(n) = 2(2T(n/2^2) + 1/2 * c2 * n ) + c2 * n
+  * T(n) = (2^k)T(n/2^k) + c2 * n * k
+  * K = log n
+  * T(n) = c2 * nlogn + c2 * n => O(n log n), Space Complexity 🡪 O(n)
+* Picture
+  ![image](https://user-images.githubusercontent.com/64727012/173189866-f22081b0-69ed-44d4-a070-4d7a617fb470.png)
+
 
 
 #### Quick Sort
+* Description
+  * In array a, select a pivot. The pivot becomes criteria for division
+  * The values less than the pivot move into its right part 
+  * Sort recursively in the same way as above
+  * Kth smallest
+    * Sort array a, then return a[k-1] value
 * Code
   * Divide
     ```cpp
@@ -344,6 +365,25 @@
 
     
     ```
+* Ideally, when split in half, Θ(n log n)
+  * T(1) = c1
+  * When n is more than 1, 2T(n/2) + n
+  * T(n) = 2(2T(n/2) + n/2) + n
+  * T(n) = (2^k)T(n/2^k) + n * k
+  * K = log n
+  * T(n) = n log n + c1 * n => Θ(n log n)
+* When the pivot is continuously selected maximum or minimum value, O(n^2)
+  * T(1) = c1
+  * When n is more than 1, T(n-1) + n + c1
+  * T(n) = T(n-1) + n + c1
+  * T(n) = n * k + k * c1 => n^2 + n * c1 🡪 O(n^2)
+* Kth smallest : O(n^2), Θ(nlog n)
+* Space analysis => need stack memory of O(n)
+  * We can reduce stack memory as O(log n) by sorting the small part of two divided parts 
+* Picture
+  ![image](https://user-images.githubusercontent.com/64727012/173190292-e538e082-4788-4363-a3a5-e55603afe683.png)
+
+
 
 ### Heap Sort
 * Code
