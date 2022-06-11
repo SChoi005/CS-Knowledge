@@ -102,7 +102,7 @@
 ### Simple Sorting Algorithms
 
 #### Selection Sort
-* O(n^2)
+* <strong>O(n^2)</strong>
 * Code
   ```cpp
   void selectionSort(int arr[], int n){
@@ -124,7 +124,7 @@
 
 
 #### Bubble sort
-* O(n^2)
+* <strong>O(n^2)</strong>
 * Code
   ```cpp
   void bubbleSort(int arr[], int n){
@@ -160,7 +160,7 @@
 
 
 #### Insertion Sort
-* O(n^2)
+* <strong>O(n^2)</strong>
 * Code
   ```cpp
   void insertSort(int arr[], int n){
@@ -215,7 +215,7 @@
   }
 
   ```
-* O(n)
+* <strong>O(n)</strong>
   * T(1) = c1
   * When n is more than 1, T(n) = 2T(n/2) + C2
   * T(n) = 2T(n/2) + C2 => T(n) = 2(2(T/2^2) + C2) + C2
@@ -276,13 +276,13 @@
   }
 
   ```
-* O(n log n)
+* <strong>O(n log n)</strong>
   * T(1) = C2
   * When n is more than 1, T(n) = 2(n/2) + C2 * n
   * T(n) = 2(2T(n/2^2) + 1/2 * c2 * n ) + c2 * n
   * T(n) = (2^k)T(n/2^k) + c2 * n * k
   * K = log n
-  * T(n) = c2 * nlogn + c2 * n => O(n log n), Space Complexity 🡪 O(n)
+  * T(n) = c2 * nlogn + c2 * n => <strong>O(n log n), Space Complexity 🡪 O(n)</strong>
 * Picture
   ![image](https://user-images.githubusercontent.com/64727012/173189866-f22081b0-69ed-44d4-a070-4d7a617fb470.png)
 
@@ -365,19 +365,19 @@
 
     
     ```
-* Ideally, when split in half, Θ(n log n)
+* <strong>Ideally, when split in half, Θ(n log n)</strong>
   * T(1) = c1
   * When n is more than 1, 2T(n/2) + n
   * T(n) = 2(2T(n/2) + n/2) + n
   * T(n) = (2^k)T(n/2^k) + n * k
   * K = log n
   * T(n) = n log n + c1 * n => Θ(n log n)
-* When the pivot is continuously selected maximum or minimum value, O(n^2)
+* <strong>When the pivot is continuously selected maximum or minimum value, O(n^2)</strong>
   * T(1) = c1
   * When n is more than 1, T(n-1) + n + c1
   * T(n) = T(n-1) + n + c1
   * T(n) = n * k + k * c1 => n^2 + n * c1 🡪 O(n^2)
-* Kth smallest : O(n^2), Θ(nlog n)
+* <strong>Kth smallest : O(n^2), Θ(nlog n)</strong>
 * Space analysis => need stack memory of O(n)
   * We can reduce stack memory as O(log n) by sorting the small part of two divided parts 
 * Picture
@@ -386,6 +386,11 @@
 
 
 ### Heap Sort
+* Description
+  * Make a array max-heap by using RebuildHeap function
+  * 0th index value is max value in max heap
+  * This value swaps with the lastest element in the array, and reduce heap size
+  * Repeat making max-heap by calling rebuildHeap
 * Code
   * rebuildHeap
     ```cpp
@@ -468,6 +473,12 @@
       }
 
       ```
+* <strong>O(n log n)</strong>
+  * rebuildHeap => O(log n) 
+  * Since rebuildHeap is called n times, it could be considered time complexity as O(n log n), but this is not a tight analysis.
+
+#### Algorithm compare
+![image](https://user-images.githubusercontent.com/64727012/173190986-dff1013f-471a-42c3-bf85-d23e19610379.png)
 
 
 ### Radix Sort
