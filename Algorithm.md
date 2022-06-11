@@ -63,6 +63,30 @@
   * quadratic  O(n^2), cubic O(n^3)
   * polynomial O(n^k), k >= 1
   * Exponential O(a^n), a > 1</strong>
+  * O(√n) => ex) Determining prime numbers
+    * If there is no divisor in numbers under √n, there is no divisor over √n
+
+### Recursive case (Core concept of Divide and Conquer)
+* Algorithm describing a big problem into small problems about input
+* Must require <strong>basecase</strong> in recursion 
+* Execution time => How many times basecase calculate
+<br/>
+
+* Example 1 (n!)
+  * T(n) = 1 + T(n-1) => T(n) = 1 + [1 + T(n-2)] ... T(n) = n + T(1) => O(n)
+* Example 2 (x^n)
+  * When n is even, square after calculate x^(n/2)
+  * When n is odd, x * x^(n-1)
+  * T(n) = 2 + T(n/2) ... T(n) = 2k + T(n/2^k)
+  * n/2^k = 1 => n = 2^k => log n = k
+  * T(n) = 2 log n + T(1) = 2 log n + 1 => O(log n)
+* Example 3 (Binary Search)
+  * T(n) = 2k + T(n/2^k) => O(log n)
+* Example 4 (Hanoi Top)
+  * When n is 1, T(n) = 1, When n is more than 1, T(n) = 2T(n-1) + 1 
+  * T(n) = 2T(n-1) + 1 => T(n) = 2[2T(n-2) + 1] + 1 => T(n) = 2^k T(n-k) + 2^k-1
+  * n-k = 1 => k = n-1 
+  * T(n) = 2^n-1 + 2^n-2 => O(2^n) 
 
 ## Sorting
 
@@ -78,6 +102,7 @@
 ### Simple Sorting Algorithms
 
 #### Selection Sort
+* O(n^2)
 * Code
   ```cpp
   void selectionSort(int arr[], int n){
@@ -93,9 +118,13 @@
       }
   }
   ```
-  
+* Picture
+
+  ![image](https://user-images.githubusercontent.com/64727012/173173669-2bb173c6-8ec3-447b-9472-be52a788f7ff.png)
+
 
 #### Bubble sort
+* O(n^2)
 * Code
   ```cpp
   void bubbleSort(int arr[], int n){
@@ -126,9 +155,12 @@
       }
   }
   ```
+* Picture
+  ![image](https://user-images.githubusercontent.com/64727012/173173861-5c926e3a-4dfa-4dba-915d-4296e758c71b.png)
 
 
 #### Insertion Sort
+* O(n^2)
 * Code
   ```cpp
   void insertSort(int arr[], int n){
@@ -149,9 +181,54 @@
   }
 
   ```
+* Picture
+  ![image](https://user-images.githubusercontent.com/64727012/173173920-3312aa21-0158-4611-8910-67868d3555ce.png)
 
+#### Simple Sorting Algorithms Summary
+
+![image](https://user-images.githubusercontent.com/64727012/173173965-461429e3-2464-4aa6-8799-809275ff60ba.png)
 
 ### Sorting Algorithm by Divide and Conquer
+1. Divide a problem of big input into problems of small input
+2. Solve reculsively small problems of step 1 
+3. By using solutions of step 2, solve the original problem
+
+#### Algorithm finding maximum value in array
+* Description
+  * Save max value of left part of half in lmax
+  * Save max value of right part of half in rmax
+  * By comparing two value, return a bigger one
+* Code
+  ```cpp
+  int maxReturn(int a[], int first, int last){
+      if(first<last){
+          int mid = (first+last)/2;
+          int lmax = maxReturn(a, first, mid);
+          int rmax = maxReturn(a, mid+1, last);
+          if(lmax > rmax)
+              return lmax;
+          else
+              return rmax;        
+      }
+      else
+          return a[first];
+  }
+
+  ```
+* O(n)
+  * T(1) = c1
+  * When n is more than 1, T(n) = 2T(n/2) + C2
+  * T(n) = 2T(n/2) + C2 => T(n) = 2(2(T/2^2) + C2) + C2
+  * T(n) = (2^k) * T(n/2^k) + C2*(2^k-1) => K= logn
+  * T(n) = (C2+C1)n – C2 => O(n)
+
+#### Merge Sort
+
+#### Quick Sort
+
+### Heap Sort
+
+### Radix Sort
 
 
 ## Dynamic Programming
