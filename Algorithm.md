@@ -476,12 +476,21 @@
 * <strong>O(n log n)</strong>
   * rebuildHeap => O(log n) 
   * Since rebuildHeap is called n times, it could be considered time complexity as O(n log n), but this is not a tight analysis.
+* Picture
+
+  ![image](https://user-images.githubusercontent.com/64727012/173191619-fc22d773-0020-470f-9a86-179af3295890.png)
 
 #### Algorithm compare
 ![image](https://user-images.githubusercontent.com/64727012/173190986-dff1013f-471a-42c3-bf85-d23e19610379.png)
 
 
 ### Radix Sort
+* Description
+  * This is not method by compare
+  * Distribute elements as criteria for the rightmost digit, and then gather them
+  * Then repeat by the second, third, ... rightmost digit 
+  * The elements under 10 are sorted in Bin[0]
+  * When distribute and gather, use Queue
 * Code
   ```cpp
   void radixSort(int a[], int n){
@@ -520,7 +529,45 @@
   }
 
   ```
+* <strong>O(d * (n + r))</strong>
+  * d => Maximum number of digits of sort data
+  * r => base
+* Picture
 
+  ![image](https://user-images.githubusercontent.com/64727012/173191491-ba50b1bd-dd23-4d5c-8e30-86666ce27a1a.png)
+
+### Counting Sort
+* Description
+  * This is not method by compare
+  * This must know maximum value
+  * Count the number of each element
+  * C is the counting array. C[i] saves the number of i
+  * C[i] is stored back as the sum of numbers less than or equal to i 
+  * Also stores i in B[C[i]-1]
+  * The disadvantage of this is that it requires a lot of memory compared to the number of data
+* Code
+  ```cpp
+  int c[10000];
+  int* countingSort(int a[], int n, int k){
+      int* b = new int[n];
+      for(int i=0; i<=k; i++)
+          c[i] = 0;
+      for(int i=0; i<n; i++)
+          c[a[i]] += 1;
+      for(int i=0; i<=k; i++)
+          c[i] += c[i-1];
+      for(int i = n-1; i>=0; i--){
+          b[c[a[i]]-1] = a[i];
+          c[a[i]] -= 1;
+      } 
+      return b;
+  }
+
+  ```
+* <strong>O(n)</strong>
+* Picture
+
+  ![image](https://user-images.githubusercontent.com/64727012/173192019-55670895-bea9-4b07-b5af-12ed8ded8763.png)
 
 
 ## Dynamic Programming
