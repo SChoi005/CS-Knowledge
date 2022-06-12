@@ -571,6 +571,43 @@
 
 
 ## Dynamic Programming
+* <strong>Definition</strong>
+  * <strong>Divide and conquer</strong> is method that divide a problem into partial problems, solve recursively them, and solve the original problem from them. (Partial problems are independent)
+  * 
+  * <strong>Dynamic programming</strong> solve the problem by using solution of partial problems. (Unlike divide and conquer, The needed partial problems to solve the original problem are not independent )
+* <strong>Two accessable way</strong>
+  * <strong>Memoization</strong>
+    * Be able to define through recursion or saving results
+    * After computing solution of small problems, save in a table
+    * Successive calls execute the table
+    * Table is a global variable(lookup)
+  * <strong>Bottom-Up</strong>
+    * Solve in turn by starting from small partial problems to big partial problems  
+    * After getting solutions of partial problems, save them in a table
+    * When solve partial problems, not calculate needed solutions of smaller partial problems, but refer the table
+* <strong>Dynamic programming</strong> is used to solve problems applied <strong>Optimization Principle</strong>
+  * Optimization solutions of problems include all optimization solutions of partial problems
+  * If suppose a series of choices is D1,D2,D3...Dn, 
+  * D2,D3,...Dn become optimization solutions after first selection is D1 
+  * <strong>Optimization Principle</strong> Ex) the shortest path
+  * <strong>Optimization Principle not applied</strong> Ex) the longest simple path
+* <strong>Step</strong>
+  * Figure out the structure of optimization solution
+  * Figure out recursive definition about optimization solution
+  * Solve objective function by using bottom-up or memoization and save the value in a table
+  * Solve optimization solution by using information of step 3
+
+### Fibonacci
+### Binomial coefficient
+### The way to represent sum of natural number n
+### The way to give change
+### Weighted Interval Scheduling
+### Maximum sum of successive numbers
+### Solve the longest increasing subsquence
+### Find path in Grid
+### LCS(Longest Common Subsequence)
+### Assembly line scheduling
+
 
 ## Greedy Method
 
