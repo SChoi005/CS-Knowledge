@@ -600,7 +600,7 @@
 * Description
   * Bottom-up
     * By saving value continuously through loop, solve next values
-    * Prior values don't have to solve again due to saving them
+    * Prior values don't have to solve again because they have been saved
   * Memoization
     * After initialize the global variable(lookup), solve the function recursively
     * Then, if this is first value, save in lookup
