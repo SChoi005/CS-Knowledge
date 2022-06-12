@@ -573,7 +573,6 @@
 ## Dynamic Programming
 * <strong>Definition</strong>
   * <strong>Divide and conquer</strong> is method that divide a problem into partial problems, solve recursively them, and solve the original problem from them. (Partial problems are independent)
-  * 
   * <strong>Dynamic programming</strong> solve the problem by using solution of partial problems. (Unlike divide and conquer, The needed partial problems to solve the original problem are not independent )
 * <strong>Two accessable way</strong>
   * <strong>Memoization</strong>
@@ -598,6 +597,65 @@
   * Solve optimization solution by using information of step 3
 
 ### Fibonacci
+* Description
+  * Bottom-up
+    * By saving value continuously through loop, solve next values
+    * Prior values don't have to solve again due to saving them
+  * Memoization
+    * After initialize the global variable(lookup), solve the function recursively
+    * Then, if this is first value, save in lookup
+    * If not, bring the value from lookup
+  * Effective memory use
+    * Not save values in array
+    * Solve values by saving pre-value and pre-pre-value 
+* Code
+  * Bottom-up
+    ```cpp
+    int fib1(int n){
+        int *f = new int[n];
+        f[0] = 0; 
+        f[1] = 1;
+        for(int i=2; i<=n; i++){
+            f[i] = f[i-1] + f[i-2];
+        }    
+        return f[n];
+    }
+
+    ```
+  * Memoization
+    ```cpp
+    int lookup[100];
+ 
+    int fib2(int n){
+        if(lookup[n]==-1){
+            if(n<=1)
+                lookup[n] = n;
+            else
+                lookup[n] = fib2(n-1) + fib2(n-2);        
+        }
+        return lookup[n];
+    }
+
+    ```
+  * Effective memory use
+    ```cpp
+    int fib3(int n){
+        int pre_pre, pre, current;
+
+        if(n<= 1)
+            return 1;
+        pre_pre = 0;
+        pre = 1;
+        for(int i=2; i<=n; i++){
+            current = pre_pre + pre;
+            pre_pre=pre;
+            pre=current;
+        }
+        return current;
+    }
+
+    ```
+* <strong>O(n)</strong>
 ### Binomial coefficient
 ### The way to represent sum of natural number n
 ### The way to give change
