@@ -784,10 +784,164 @@
         return C[n][k];
     }
     ```
+  * Picture
+    * method 1 (n=10)
     
+      ![image](https://user-images.githubusercontent.com/64727012/173845150-360ac3da-3263-45e0-a0f2-5814d9b31cd2.png)
+
+    * method 2 (n=10, k=3)
+    
+      ![image](https://user-images.githubusercontent.com/64727012/173845200-cb80f36c-80f1-404e-8e0b-cb7e85456778.png)
+
+    * method 3 (n=4)
+      
+      ![image](https://user-images.githubusercontent.com/64727012/173845267-c45533a8-53bc-4d2d-ab35-0d56f464e408.png)
+
+    * method 4 
+      
+      ![image](https://user-images.githubusercontent.com/64727012/173845316-51f3e429-103f-4e28-b495-f63eb88e6d27.png)
+
 ### The way to give change
+* Description
+  * J means the number from the lowest coin. And i mean change. C[i][j] is represented number of cases representing i by using j coins.
+* Code => O(MN)
+  ```cpp
+  int countChange(int m){
+      int C[MAX][MAX];
+      int n= 3;
+      int coin[n] = {1, 3, 5};
+      for(int i=0; i<=m; i++){
+          for(int j=0; j<=n; j++){
+              if(j==0)
+                  C[i][j] = 0;
+              else if(i==0)
+                  C[i][j] = 1;
+              else if(j==1 && i<coin[0])
+                  C[i][j] = 0;
+              else if(i<coin[j-1])
+                  C[i][j] = C[i][j-1];
+              else
+                  C[i][j] = C[i-coin[j-1]][j] + C[i][j-1];            
+          }
+      }
+
+      return C[m][n];
+  }
+  ```
+* Picture
+
+  ![image](https://user-images.githubusercontent.com/64727012/173845641-cd82e95e-209d-4cba-8830-2200b3905c50.png)
+
 ### Weighted Interval Scheduling
+* Description
+  *  Expression : opt[j] = max(w[j] + opt[p[j]], opt[j-1])
+  *  w : weight, array p : stores the index where the i-th starting point meets
+* Code => O(n log n)
+  ```cpp
+  int weightedIntervalScheduling(int w[], int p[], int n){
+      int* opt = new int[n+1];
+      opt[0] = 0;
+      for(int i=1; i<=n; i++)
+          opt[i] = max(w[i-1]+opt[p[i-1]], opt[i-1]);
+      return opt[n];
+  }
+
+  ```
+* Picture
+
+  ![image](https://user-images.githubusercontent.com/64727012/173848198-0d3ed18e-b620-4e60-a579-694c632a4f77.png)
+
+
 ### Maximum sum of successive numbers
+* Description
+  * Method 1 : i is start point, j is last point. Find the maximum sum in loop with index k.
+  * Method 2 : i is start point. Find the maximum sum by executing loop from j = i to end.
+  * Method 3 : Basecase is to return itself when number of elements is 1. If not,Find max value by executing recursion left and right of half. and find the maximum among left, right, and middle value. return it.
+  * Method 4 : make array sum. When prior value is negative, plus itself, and When it is positive, plus itself to prior value. return the maximum value in sum.
+* Code
+  * Method 1 => O(n^3)
+    ```cpp
+    int maxSum1(int a[], int n){
+        int maxSum = INT32_MIN;
+        for(int i=0; i<n; i++){
+            for(int j=i; j<n; j++){
+                int sum=0;
+                for(int k=i; k<=j; k++)
+                    sum+=a[k];
+                if(maxSum < sum)
+                    maxSum = sum;
+            }
+        }
+        return maxSum;
+    }
+
+    ```
+  * Method 2 => O(n^2)
+    ```cpp
+    int maxSum2(int a[], int n){
+        int maxSum = INT32_MIN;
+        for(int i=0; i<n; i++){
+            int sum=0;
+            for(int j=i; j<n; j++){
+                sum+=a[j];
+                if(maxSum < sum)
+                    maxSum = sum;
+            }
+        }
+        return maxSum;
+    }
+
+    ```
+  * Method 3 (Divide and conquer) => O(n log n)
+    ```cpp
+    int maxSum3(int a[], int first, int last){
+        if(first<last){
+            int mid = (first+last)/2;
+            int lmax = maxSum3(a, first, mid);
+            int rmax = maxSum3(a, mid+1, last);
+
+            int temp = 0;
+            int left = INT32_MIN;
+            for(int i = mid; i>=first; i--){
+                temp += a[i];
+                left = max(left, temp);
+            }
+
+            temp = 0;
+            int right = INT32_MIN;
+            for(int i = mid+1; i<=last; i++){
+                temp += a[i];
+                right = max(right, temp);
+            }
+            temp = right+left;
+
+            return max(temp, max(lmax, rmax));        
+        }
+        return a[first];
+    }
+
+    ```
+  * Method 4 (DP) => O(n)
+    ```cpp
+    int maxSum4(int a[], int n){
+        int sum[MAX], maxSum;
+        sum[0] = a[0];
+        for(int i=1; i<n; i++){
+            if(sum[i-1] > 0)
+                sum[i] = sum[i-1] + a[i];
+            else
+                sum[i] = a[i];        
+        }
+
+        maxSum = sum[0];
+        for(inti=1; i<n; i++){
+            if(maxSum < sum[i])
+                maxSum = sum[i];
+        }
+        return maxSum;
+    }
+
+    ```
 ### Solve the longest increasing subsquence
 ### Find path in Grid
 ### LCS(Longest Common Subsequence)
