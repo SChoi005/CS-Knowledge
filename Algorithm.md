@@ -657,7 +657,134 @@
     ```
 * <strong>O(n)</strong>
 ### Binomial coefficient
+* Description
+  * Expression : nCk = n-1Ck-1 + n-1Ck
+  * Inefficient method uses recursion
+  * Bottom-up method solve the problem by making 2-demension array 
+* Code
+  * Inefficient method
+    ```cpp
+    int C1(int n, int k){
+        if(k==0 || n==k)
+            return 1;
+        else
+            return C1(n-1, k-1) + C1(n-1, k);    
+    }
+
+    ```
+  * Bottom-up => O(n^2)
+    ```cpp
+    int C2(int n, int k){
+        int **C = new int*[n+1];
+        for(int i=0; i<=n; i++)
+            C[i] = new int[n+1];
+
+        for(int i=0; i<=n; i++){
+            for(int j=0; j<=min(i,k); j++){
+                if(j==0 || j==i)
+                    C[i][j] =1;
+                else
+                    C[i][j] = C[i-1][j-1] + C[i-1][j];            
+            }
+        }
+
+        int result = C[n][k];
+
+        for(int i=0; i<=n; i++)
+            delete[] C[i];
+        delete[] C;
+
+        return result;
+    }
+
+    ```
+  * Picture
+  
+    ![image](https://user-images.githubusercontent.com/64727012/173838114-f955a027-360f-4ff8-95fb-2a842ebc2598.png)
+
+
 ### The way to represent sum of natural number n
+* Description
+  * Method 1 : After C[0] is set 1, plus all values before index i. The value of index is number of cases representing the number n. So i is the value that plus number of cases representing from 0 to i-1.
+  * Method 2 : From method 1, change conditional sentence as :
+    * If i = 0 -> 1
+    * If i < k -> C2(i-1) + C2(i-2) + ... + C(0)
+    * If i >= k -> C2(i-1) + C2(i-2) + … + C2(i-k)
+  * Method 3 : j is available number. If j is equal 1, only can use 1. By using recurrence relation to divde cases removing overlap, make 2-demension array until j is equal n and return C[n][n]. This is number of cases representing n as number from 1 to n.  
+  * Method 4 : From method 3, return C[n][k] by calculating j up to k
+* Code
+  * Method 1 (number of cases capable of representing as number from 1 to n) => O(n^2)
+    ```cpp
+    int sumCount1(int n){
+        int C[100];
+        C[0] = 1;
+        for(int i=1; i<=n; i++){
+            C[i] = 0;
+            for(int j=0; j<=i-1; j++)
+                C[i] += C[j];
+        }
+        return C[n];
+    }
+    ```
+  * Method 2 (number of cases capable of representing as number from 1 to k) => O(n^2)
+    ```cpp
+    int sumCount2(int n, int k){
+        int C[100];
+        C[0] = 1;
+        for(int i=1; i<=n; i++){
+            C[i] = 0;
+            if(i<k){
+                for(int j=0; j<=i-1; j++)
+                    C[i] += C[j];
+            }
+            else{
+                for(int j=i-k; j<=i-1; j++)
+                    C[i] += C[j];
+            }
+        }
+        return C[n];
+    }
+    ```
+  * Method 3 (When remove overlap) => O(n^2)
+    ```cpp
+    int sumCount3(int n){
+        int C[MAX][MAX];
+        for(int i=0; i<=n; i++){
+            for(int j=0; j<=n; j++){
+                if(j==0)
+                    C[i][j] = 0;
+                else if(i==0)
+                    C[i][j] = 1;
+                else if(i<j)
+                    C[i][j] = C[i][i];
+                else
+                    C[i][j] = C[i-j][j] + C[i][j-1];            
+            }
+        }
+        return C[n][n];
+    }
+    ```
+  * Method 4 (number of cases that remove overlap and be capable of representing only from 1 to k) => O(nk)
+    ```cpp
+    int sumCount4(int n, int k){
+        int C[MAX][MAX];
+        for(int i=0; i<=n; i++){
+            for(int j=0; j<=k; j++){
+                if(j==0)
+                    C[i][j] = 0;
+                else if(i==0)
+                    C[i][j] = 1;
+                else if(i<j)
+                    C[i][j] = C[i][i];
+                else
+                    C[i][j] = C[i-j][j] + C[i][j-1];            
+            }
+        }
+
+        return C[n][k];
+    }
+    ```
+    
 ### The way to give change
 ### Weighted Interval Scheduling
 ### Maximum sum of successive numbers
